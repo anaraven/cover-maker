@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="cover.css">
+  <title>Cover</title>
+</head>
+<body>
+<div class="all">
+  <div class="face" id="back">
+  </div>
+  <div class="center" id="title">Title of the book</div>
+  <div class="face" id="front">
+  </div>
+</div>
+<div class="data">
+<div class="col">
+Back: <input type="file" id="back_but" data-dst="back" name="files[]" /><br/>
+Background: <input type="color" id="back_bg" data-dst="back" data-attr="background" value="#ffffff" />
+</div>
+<div class="col">
+Background: <input type="color" id="center_but" data-dst="title" data-attr="background" value="#ffffff" /><br/>
+Foreground: <input type="color" id="center_fg" data-dst="title" data-attr="color" value="#000000" />
+Width: <input type="text" name="center_wd" value="2cm">
+</div>
+<div class="col">
+Front: <input type="file" id="front_but" data-dst="front" name="files[]" /><br/>
+Width: <input type="text" name="front_wd" value="10cm">
+Background: <input type="color" id="front_bg" data-dst="front" data-attr="background" value="#ffffff" />
+</div>
+</div>
+
+<script>
+function handleFileSelect(evt) {
+  var dst = evt.target.dataset.dst
+  var files = evt.target.files; // FileList object
+  // console.log(dst)
+
+  for (var i = 0, f; f = files[i]; i++) {
+    // Only process image files.
+    if (!f.type.match('image.*')) {
+      continue;
+    }
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+      return function(e) {
+        // Render thumbnail.
+        var span = document.getElementById(dst);
+        span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                          '" title="', escape(theFile.name), '"/>'].join('');
+      };
+    })(f);
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(f);
+  }
+}
+
+function handleColorSelect(evt) {
+  var dst = evt.target.dataset.dst
+  var attr = evt.target.dataset.attr
+  var col = evt.target.value;
+  var title = document.getElementById(dst);
+  console.log(dst, attr, col)
+  title.style[attr] = col;
+}
+
+
+document.getElementById('back_but').addEventListener('change', handleFileSelect, false);
+document.getElementById('front_but').addEventListener('change', handleFileSelect, false);
+document.getElementById('center_but').addEventListener('change', handleColorSelect, false);
+document.getElementById('center_fg').addEventListener('change', handleColorSelect, false);
+
+</script>
+</body>
+</html>
