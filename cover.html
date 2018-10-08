@@ -15,21 +15,42 @@
 </div>
 <div class="data">
 <div class="col">
-Back: <input type="file" id="back_but" data-dst="back" name="files[]" /><br/>
+<p>
+<label for="back_file">Back: 
+<input type="file" id="back_file" data-dst="back" name="files[]" /></label><p/>
 Background: <input type="color" id="back_bg" data-dst="back" data-attr="background" value="#ffffff" />
 </div>
 <div class="col">
-Background: <input type="color" id="center_but" data-dst="title" data-attr="background" value="#ffffff" /><br/>
-Foreground: <input type="color" id="center_fg" data-dst="title" data-attr="color" value="#000000" />
-Width: <input type="text" name="center_wd" value="2cm">
+Background: <input type="color" id="center_bg" data-dst="title" data-attr="background" value="#ffffff" /><br/>
+Foreground: <input type="color" id="center_fg" data-dst="title" data-attr="color" value="#000000" /><br/>
+Width: <input type="text" name="center_wd" value="2cm" style=" width: 40px;"/><br/>
+<select id="selecth1FontFamily" name="selectFontFamily" onchange="updateh1family();">
+  <option> Serif </option>
+  <option> Arial </option>
+  <option> Sans-Serif </option>                                  
+  <option> Tahoma </option>
+  <option> Verdana </option>
+  <option> Lucida Sans Unicode </option>                               
+</select><br/>
+<input type="number" id="size" min="0" max="70" value="30" onchange="updateSize()" />
 </div>
 <div class="col">
-Front: <input type="file" id="front_but" data-dst="front" name="files[]" /><br/>
+Front: <input type="file" id="front_file" data-dst="front" name="files[]" /><br/>
 Width: <input type="text" name="front_wd" value="10cm">
 Background: <input type="color" id="front_bg" data-dst="front" data-attr="background" value="#ffffff" />
 </div>
 </div>
-
+<dialog id="favDialog">
+  <form method="dialog">
+    <p><label>Favorite animal:
+	    <input type="text" id="title_text"/>
+    </label></p>
+    <menu>
+      <button>Cancel</button>
+      <button>Confirm</button>
+    </menu>
+  </form>
+</dialog>
 <script>
 function handleFileSelect(evt) {
   var dst = evt.target.dataset.dst
@@ -66,12 +87,51 @@ function handleColorSelect(evt) {
   title.style[attr] = col;
 }
 
+function updateh1family() {
+  var selector = document.getElementById('selecth1FontFamily');
+  var family = selector.options[selector.selectedIndex].value;
+  document.getElementById('title').style.fontFamily = family;
+}
 
-document.getElementById('back_but').addEventListener('change', handleFileSelect, false);
-document.getElementById('front_but').addEventListener('change', handleFileSelect, false);
-document.getElementById('center_but').addEventListener('change', handleColorSelect, false);
+function updateSize() {
+  document.getElementById('title').style.fontSize = document.getElementById('size').value + "pt";
+}
+
+function myFunction() {
+    var person = prompt("Book Title", "");
+    if (person != null) {
+        document.getElementById("title").innerHTML =
+        "Hello " + person + "! How are you today?";
+    }
+}
+document.getElementById('back_file').addEventListener('change', handleFileSelect, false);
+document.getElementById('front_file').addEventListener('change', handleFileSelect, false);
+document.getElementById('center_bg').addEventListener('change', handleColorSelect, false);
 document.getElementById('center_fg').addEventListener('change', handleColorSelect, false);
+document.getElementById('front_bg').addEventListener('change', handleColorSelect, false);
+document.getElementById('back_bg').addEventListener('change', handleColorSelect, false);
 
+var updateButton = document.getElementById('title');
+var favDialog = document.getElementById('favDialog');
+
+  // “Update details” button opens the <dialog> modally
+updateButton.addEventListener('click', function() { favDialog.showModal(); });
 </script>
 </body>
 </html>
+
+<!--
+var back = document.getElementById('back');
+var title = document.getElementById('title');
+var front = document.getElementById('front');
+var back_file = document.getElementById('back_file');
+var back_bg = document.getElementById('back_bg');
+var center_bg = document.getElementById('center_bg');
+var center_fg = document.getElementById('center_fg');
+var selecth1FontFamily = document.getElementById('selecth1FontFamily');
+var size = document.getElementById('size');
+var front_file = document.getElementById('front_file');
+var front_bg = document.getElementById('front_bg');
+var favDialog = document.getElementById('favDialog');
+var title_text = document.getElementById('title_text');
+-->
