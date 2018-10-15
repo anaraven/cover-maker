@@ -2,11 +2,86 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="cover.css">
+  <!-- link rel="stylesheet" href="cover.css" -->
+<style>
+body {
+  box-sizing: border-box;
+}
+.all {
+  /* width: 30cm; */
+  height: 13.1cm;
+  float: left;
+}
+
+.all::after {
+  clear: both;
+  display:table;
+  content: "";
+}
+
+.face {
+  float: left;
+  width: 10cm;
+  height: 100%;
+  border: grey 1px dashed;
+}
+
+.center {
+  width: 2cm;
+  height: 100%;
+  float: left;
+  border-top: grey thin dashed;
+}
+
+#title {
+  font-size: 15mm;
+  line-height: 2cm;
+  text-align: center;
+  vertical-align: middle;
+  /* color: white; */
+  /* background: #b71b9a; */
+  font-family: serif;
+  writing-mode: vertical-rl;
+}
+
+img.thumb {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.all:after {
+    /* content: ""; */
+    /* display: table; */
+    /* clear: both; */
+}
+
+.data {
+    display: block;
+    float: left;
+}
+.col {
+    float: left;
+    width: 33%;
+    border: grey solid thin;
+    height: 5cm;
+}
+
+@media print {
+  .data {
+    display: none;
+}
+.face, .center {
+  border: none
+  }
+  .all {
+    border: grey solid thin;
+  }
+}
+</style>
   <title>Cover</title>
 </head>
 <body>
-<div class="all">
+<div class="all" id="todo">
   <div class="face" id="back">
   </div>
   <div class="center" id="title">Title of the book</div>
@@ -15,35 +90,40 @@
 </div>
 <div class="data">
 <div class="col">
-<p>
-<label for="back_file">Back: 
-<input type="file" id="back_file" data-dst="back" name="files[]" /></label><p/>
-Background: <input type="color" id="back_bg" data-dst="back" data-attr="background" value="#ffffff" />
+  <p>
+  <label for="back_file">
+    Back: <input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" />
+  </label></p>
+  Background: <input type="color" id="back_bg" value="#ffffff" onchange="changeAttribute(this)" data-dst="back" data-attr="background"/>
+  </div>
+<div class="col">
+	Text: <input type="text" style="width: 160px;" value="Title of the Book" onchange="updateTitle(this)" data-dst="title"><br/>
+  Background: <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="title" data-attr="background"/><br/>
+  Foreground: <input type="color" value="#000000" onchange="changeAttribute(this)" data-dst="title" data-attr="color"/><br/>
+  Width: <input type="text" style=" width: 40px;" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="width"/><br/>
+     Line Size: <input type="text" style="width: 40px;" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="line-height"/><br/>
+  Font Size(mm) <input type="text" style="width: 40px;" value="15mm" onchange="changeAttribute(this)" data-dst="title" data-attr="font-size"/><br/>
+  Font:
+  <select id="selectFontFamily" name="selectFontFamily" onchange="updateFontfamily(this)">
+    <option> Serif </option>
+    <option> Arial </option>
+    <option> Sans-Serif </option>
+    <option> Tahoma </option>
+    <option> Verdana </option>
+    <option> Lucida Sans Unicode </option>
+  </select><br/>
 </div>
 <div class="col">
-Background: <input type="color" id="center_bg" data-dst="title" data-attr="background" value="#ffffff" /><br/>
-Foreground: <input type="color" id="center_fg" data-dst="title" data-attr="color" value="#000000" /><br/>
-Width: <input type="text" name="center_wd" value="2cm" style=" width: 40px;"/><br/>
-<select id="selecth1FontFamily" name="selectFontFamily" onchange="updateh1family();">
-  <option> Serif </option>
-  <option> Arial </option>
-  <option> Sans-Serif </option>                                  
-  <option> Tahoma </option>
-  <option> Verdana </option>
-  <option> Lucida Sans Unicode </option>                               
-</select><br/>
-<input type="number" id="size" min="0" max="70" value="30" onchange="updateSize()" />
-</div>
-<div class="col">
-Front: <input type="file" id="front_file" data-dst="front" name="files[]" /><br/>
-Width: <input type="text" name="front_wd" value="10cm">
-Background: <input type="color" id="front_bg" data-dst="front" data-attr="background" value="#ffffff" />
+  Front: <input type="file" id="front_file" data-dst="front" name="files[]" onchange="handleFileSelect(this)"/><br/>
+  Width: <input type="text" value="100mm" onchange="changeAttribute(this)" data-dst="front" data-attr="width"/></br>
+  Height: <input type="text" value="131mm" onchange="changeAttribute(this)" data-dst="todo" data-attr="height"/></br>
+  Background: <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="front" data-attr="background" />
 </div>
 </div>
 <dialog id="favDialog">
   <form method="dialog">
-    <p><label>Favorite animal:
-	    <input type="text" id="title_text"/>
+    <p><label>Title:
+      <input type="text" id="title_text"/>
     </label></p>
     <menu>
       <button>Cancel</button>
@@ -51,11 +131,19 @@ Background: <input type="color" id="front_bg" data-dst="front" data-attr="backgr
     </menu>
   </form>
 </dialog>
+
 <script>
-function handleFileSelect(evt) {
-  var dst = evt.target.dataset.dst
-  var files = evt.target.files; // FileList object
-  // console.log(dst)
+// TODO: handle Google Fonts
+// TODO: update back width
+var back  = document.getElementById('back');
+var title = document.getElementById('title');
+var front = document.getElementById('front');
+var favDialog = document.getElementById('favDialog');
+
+// handle file selection. Update image
+function handleFileSelect(tgt) {
+  var dst = tgt.dataset.dst
+  var files = tgt.files; // FileList object
 
   for (var i = 0, f; f = files[i]; i++) {
     // Only process image files.
@@ -78,23 +166,22 @@ function handleFileSelect(evt) {
   }
 }
 
-function handleColorSelect(evt) {
-  var dst = evt.target.dataset.dst
-  var attr = evt.target.dataset.attr
-  var col = evt.target.value;
+function changeAttribute(tgt) {
+  var dst = tgt.dataset.dst
+  var attr = tgt.dataset.attr
+  var col = tgt.value;
   var title = document.getElementById(dst);
-  console.log(dst, attr, col)
   title.style[attr] = col;
+  console.log(dst, attr, col)
 }
 
-function updateh1family() {
-  var selector = document.getElementById('selecth1FontFamily');
+function updateFontfamily(selector) {
   var family = selector.options[selector.selectedIndex].value;
-  document.getElementById('title').style.fontFamily = family;
+  title.style.fontFamily = family;
 }
 
-function updateSize() {
-  document.getElementById('title').style.fontSize = document.getElementById('size').value + "pt";
+function updateTitle(tgt) {
+  title.innerHTML = tgt.value;
 }
 
 function myFunction() {
@@ -104,34 +191,10 @@ function myFunction() {
         "Hello " + person + "! How are you today?";
     }
 }
-document.getElementById('back_file').addEventListener('change', handleFileSelect, false);
-document.getElementById('front_file').addEventListener('change', handleFileSelect, false);
-document.getElementById('center_bg').addEventListener('change', handleColorSelect, false);
-document.getElementById('center_fg').addEventListener('change', handleColorSelect, false);
-document.getElementById('front_bg').addEventListener('change', handleColorSelect, false);
-document.getElementById('back_bg').addEventListener('change', handleColorSelect, false);
 
-var updateButton = document.getElementById('title');
-var favDialog = document.getElementById('favDialog');
 
-  // “Update details” button opens the <dialog> modally
-updateButton.addEventListener('click', function() { favDialog.showModal(); });
+// “Update details” button opens the <dialog> modally
+// title.addEventListener('click', function() { favDialog.showModal(); });
 </script>
 </body>
 </html>
-
-<!--
-var back = document.getElementById('back');
-var title = document.getElementById('title');
-var front = document.getElementById('front');
-var back_file = document.getElementById('back_file');
-var back_bg = document.getElementById('back_bg');
-var center_bg = document.getElementById('center_bg');
-var center_fg = document.getElementById('center_fg');
-var selecth1FontFamily = document.getElementById('selecth1FontFamily');
-var size = document.getElementById('size');
-var front_file = document.getElementById('front_file');
-var front_bg = document.getElementById('front_bg');
-var favDialog = document.getElementById('favDialog');
-var title_text = document.getElementById('title_text');
--->
