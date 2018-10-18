@@ -8,9 +8,10 @@ body {
   box-sizing: border-box;
 }
 .all {
+  /* position: absolute; */
   /* width: 30cm; */
   height: 13.1cm;
-  float: left;
+  /* float: left; */
 }
 
 .all::after {
@@ -20,8 +21,10 @@ body {
 }
 
 .face {
+  overflow: hidden;
+  box-sizing: border-box;
   float: left;
-  width: 10cm;
+  width: 120mm;
   height: 100%;
   border: grey 1px dashed;
 }
@@ -44,7 +47,8 @@ body {
   writing-mode: vertical-rl;
 }
 
-img.thumb {
+img {
+    border: blue solid thin;
     max-width: 100%;
     max-height: 100%;
 }
@@ -56,53 +60,127 @@ img.thumb {
 }
 
 .data {
-    display: block;
-    float: left;
+    /* border: green solid; */
+    /* top: 0; */
+    position: relative;
+    /* display: block; */
+    /* height: 200px; */
+    /* float: left; */
 }
 .col {
-    float: left;
-    width: 33%;
+    position: relative;
+    /* float: left; */
+    width: 320px;
     border: grey solid thin;
-    height: 5cm;
+    /* height: 5cm; */
+    top: 0;
+    left: 0;
+    color: white;
+    background: #607D8B;
+    border: #4CAF50 solid thick;
+    border-radius: 20px;
+    font-size: 14pt;
+    font-family: sans-serif;
+    padding: 0.8em;
+    margin: 0.5em;
+    display: none;
 }
 
 @media print {
   .data {
     display: none;
-}
-.face, .center {
-  border: none
+  }
+  .face, .center {
+    border: none
   }
   .all {
     border: grey solid thin;
   }
+}
+
+div#middle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+input[type="text"] {
+    position: absolute;
+    right: 10px;
+    border: none;
+    font-size: 13pt;
+    border-bottom: violet solid;
+    width: 160px;
+    margin-bottom: 3px;
+}
+.col h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+.col p {
+    margin: 4px 0;
+    line-height: 1.4em;
+}
+
+label {
+    width: 100%;
+}
+
+
+input[type="color"] {
+    position: absolute;
+    right: 10px;
+    width: 160px;
+    box-sizing: border-box;
+    padding: 0;
 }
 </style>
   <title>Cover</title>
 </head>
 <body>
 <div class="all" id="todo">
-  <div class="face" id="back">
+  <div class="face" id="back" onclick="showBlock(this)" data-dst="back-tab">
   </div>
-  <div class="center" id="title">Title of the book</div>
-  <div class="face" id="front">
+  <div class="center" id="title" onclick="showBlock(this)" data-dst="center-tab">
+    Title of the book
+  </div>
+  <div class="face" id="front" onclick="showBlock(this)" data-dst="front-tab">
   </div>
 </div>
 <div class="data">
-<div class="col">
-  <p>
-  <label for="back_file">
-    Back: <input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" />
-  </label></p>
+<div class="col" id="back-tab">
+<h1>Back:</h1>
+<p><label for="back_file">
+    Image: <input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" />
+</label></p>
+<p><label for="back_file">
   Background: <input type="color" id="back_bg" value="#ffffff" onchange="changeAttribute(this)" data-dst="back" data-attr="background"/>
-  </div>
-<div class="col">
-	Text: <input type="text" style="width: 160px;" value="Title of the Book" onchange="updateTitle(this)" data-dst="title"><br/>
-  Background: <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="title" data-attr="background"/><br/>
-  Foreground: <input type="color" value="#000000" onchange="changeAttribute(this)" data-dst="title" data-attr="color"/><br/>
-  Width: <input type="text" style=" width: 40px;" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="width"/><br/>
-     Line Size: <input type="text" style="width: 40px;" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="line-height"/><br/>
-  Font Size(mm) <input type="text" style="width: 40px;" value="15mm" onchange="changeAttribute(this)" data-dst="title" data-attr="font-size"/><br/>
+</label></p>
+</div>
+<div class="col" id="center-tab">
+<h1>Center:</h1>
+<p><label for="back_file">
+Text: <input type="text" value="Title of the Book" onchange="updateTitle(this)" data-dst="title">
+</label></p>
+<p><label for="back_file">
+Background: <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="title" data-attr="background"/>
+</label></p>
+<p><label for="back_file">
+  Foreground: <input type="color" value="#000000" onchange="changeAttribute(this)" data-dst="title" data-attr="color"/>
+</label></p>
+<p><label for="back_file">
+  Width: <input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="width"/>
+</label></p>
+<p><label for="back_file">
+     Line Size: <input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="line-height"/>
+</label></p>
+<p><label for="back_file">
+  Font Size(mm) <input type="text" value="15mm" onchange="changeAttribute(this)" data-dst="title" data-attr="font-size"/>
+</label></p>
+<p><label for="back_file">
   Font:
   <select id="selectFontFamily" name="selectFontFamily" onchange="updateFontfamily(this)">
     <option> Serif </option>
@@ -111,34 +189,35 @@ img.thumb {
     <option> Tahoma </option>
     <option> Verdana </option>
     <option> Lucida Sans Unicode </option>
-  </select><br/>
+    <option> Other ...</option>
+  </select>
+</label></p>
+<p><label for="back_file">
+Other font: <input id="other_font" type="text" value="" onchange="loadFont(this)"/>
+</label></p>
 </div>
-<div class="col">
-  Front: <input type="file" id="front_file" data-dst="front" name="files[]" onchange="handleFileSelect(this)"/><br/>
-  Width: <input type="text" value="100mm" onchange="changeAttribute(this)" data-dst="front" data-attr="width"/></br>
-  Height: <input type="text" value="131mm" onchange="changeAttribute(this)" data-dst="todo" data-attr="height"/></br>
+<div class="col" id="front-tab">
+<p><label for="front_file">
+  Front: <input type="file" id="front_file" data-dst="front" name="files[]" onchange="handleFileSelect(this)"/>
+</label></p>
+<p><label for="back_file">
+  Width: <input type="text" value="100mm" onchange="changeAttribute(this)" data-dst="front" data-attr="width"/>
+</label></p>
+<p><label for="back_file">
+  Height: <input type="text" value="131mm" onchange="changeAttribute(this)" data-dst="todo" data-attr="height"/>
+</label></p>
+<p><label for="back_file">
   Background: <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="front" data-attr="background" />
+</label></p>
 </div>
 </div>
-<dialog id="favDialog">
-  <form method="dialog">
-    <p><label>Title:
-      <input type="text" id="title_text"/>
-    </label></p>
-    <menu>
-      <button>Cancel</button>
-      <button>Confirm</button>
-    </menu>
-  </form>
-</dialog>
 
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 <script>
-// TODO: handle Google Fonts
 // TODO: update back width
 var back  = document.getElementById('back');
 var title = document.getElementById('title');
 var front = document.getElementById('front');
-var favDialog = document.getElementById('favDialog');
 
 // handle file selection. Update image
 function handleFileSelect(tgt) {
@@ -155,14 +234,23 @@ function handleFileSelect(tgt) {
     // Closure to capture the file information.
     reader.onload = (function(theFile) {
       return function(e) {
-        // Render thumbnail.
         var span = document.getElementById(dst);
-        span.innerHTML = ['<img class="thumb" src="', e.target.result,
+        span.innerHTML = ['<img src="', e.target.result,
                           '" title="', escape(theFile.name), '"/>'].join('');
       };
     })(f);
-    // Read in the image file as a data URL.
     reader.readAsDataURL(f);
+  }
+}
+
+function loadFont(tgt) {
+  var selector = document.getElementById("selectFontFamily");
+  var family = selector.options[selector.selectedIndex].value;
+  var fontName = tgt.value;
+  console.log(fontName);
+  if(fontName !="") {
+    WebFont.load({ google: { families: [fontName] } });
+    title.style.fontFamily = fontName;
   }
 }
 
@@ -170,31 +258,40 @@ function changeAttribute(tgt) {
   var dst = tgt.dataset.dst
   var attr = tgt.dataset.attr
   var col = tgt.value;
-  var title = document.getElementById(dst);
-  title.style[attr] = col;
   console.log(dst, attr, col)
+  var doc = document.getElementById(dst);
+  doc.style[attr] = col;
 }
 
 function updateFontfamily(selector) {
   var family = selector.options[selector.selectedIndex].value;
-  title.style.fontFamily = family;
+	console.log(family);
+  if(family==="Other ...") {
+     fontName = document.getElementById("other_font").value
+	console.log(fontName);
+     if(fontName != "") {
+	  console.log(WebFont.load({ google: { families: [fontName] } }));
+	  title.style.fontFamily = fontName;
+     }
+  } else {
+	title.style.fontFamily = family;
+  }
 }
 
 function updateTitle(tgt) {
   title.innerHTML = tgt.value;
 }
 
-function myFunction() {
-    var person = prompt("Book Title", "");
-    if (person != null) {
-        document.getElementById("title").innerHTML =
-        "Hello " + person + "! How are you today?";
-    }
+function showBlock(tgt) {
+  var dst = tgt.dataset.dst
+  var doc = document.getElementById(dst);
+  document.getElementById('back-tab').style["display"] = "none";
+  document.getElementById('center-tab').style["display"] = "none";
+  document.getElementById('front-tab').style["display"] = "none";
+  doc.style["display"] = "block";
 }
 
-
 // “Update details” button opens the <dialog> modally
-// title.addEventListener('click', function() { favDialog.showModal(); });
 </script>
 </body>
 </html>
