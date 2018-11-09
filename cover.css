@@ -2,9 +2,10 @@ body {
   box-sizing: border-box;
 }
 .all {
+  /* position: absolute; */
   /* width: 30cm; */
   height: 13.1cm;
-  float: left;
+  /* float: left; */
 }
 
 .all::after {
@@ -14,14 +15,16 @@ body {
 }
 
 .face {
+  overflow: hidden;
+  box-sizing: border-box;
   float: left;
-  width: 10cm;
+  width: 120mm;
   height: 100%;
   border: grey 1px dashed;
 }
 
 .center {
-  width: 2cm;  
+  width: 2cm;
   height: 100%;
   float: left;
   border-top: grey thin dashed;
@@ -38,7 +41,8 @@ body {
   writing-mode: vertical-rl;
 }
 
-img.thumb {
+img {
+    border: blue solid thin;
     max-width: 100%;
     max-height: 100%;
 }
@@ -50,24 +54,81 @@ img.thumb {
 }
 
 .data {
-    display: block;
-    float: left;
+    /* border: green solid; */
+    /* top: 0; */
+    position: relative;
+    /* display: block; */
+    /* height: 200px; */
+    /* float: left; */
 }
 .col {
-    float: left;
-    width: 33%;
+    position: relative;
+    /* float: left; */
+    /* width: 320px; */
     border: grey solid thin;
-    height: 5cm;
+    /* height: 5cm; */
+    top: 0;
+    left: 0;
+    /* color: white; */
+    /* background: #607D8B; */
+    /* border: #4CAF50 solid thick; */
+    /* border-radius: 20px; */
+    font-size: 14pt;
+    font-family: sans-serif;
+    padding: 0.8em;
+    margin: 0.5em;
+    display: none;
 }
 
 @media print {
   .data {
     display: none;
-}
-.face, .center {
-  border: none
+  }
+  .face, .center {
+    border: none
   }
   .all {
     border: grey solid thin;
   }
 }
+
+div#middle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+input[type="text"] {
+    /* position: absolute; */
+    /* right: 10px; */
+    /* border: none; */
+    font-size: 11pt;
+    /* border-bottom: violet solid; */
+    /* width: 160px; */
+    /* margin-bottom: 3px; */
+}
+.col h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+.col p {
+    margin: 4px 0;
+    line-height: 1.4em;
+}
+
+label {
+    /* width: 100%; */
+}
+
+
+input[type="color"] {
+    /* position: absolute; */
+    /* right: 10px; */
+    width: 160px;
+    /* box-sizing: border-box; */
+    /* padding: 0; */
+}
+

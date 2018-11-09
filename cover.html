@@ -2,142 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <!-- link rel="stylesheet" href="cover.css" -->
-<style>
-body {
-  box-sizing: border-box;
-}
-.all {
-  /* position: absolute; */
-  /* width: 30cm; */
-  height: 13.1cm;
-  /* float: left; */
-}
-
-.all::after {
-  clear: both;
-  display:table;
-  content: "";
-}
-
-.face {
-  overflow: hidden;
-  box-sizing: border-box;
-  float: left;
-  width: 120mm;
-  height: 100%;
-  border: grey 1px dashed;
-}
-
-.center {
-  width: 2cm;
-  height: 100%;
-  float: left;
-  border-top: grey thin dashed;
-}
-
-#title {
-  font-size: 15mm;
-  line-height: 2cm;
-  text-align: center;
-  vertical-align: middle;
-  /* color: white; */
-  /* background: #b71b9a; */
-  font-family: serif;
-  writing-mode: vertical-rl;
-}
-
-img {
-    border: blue solid thin;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.all:after {
-    /* content: ""; */
-    /* display: table; */
-    /* clear: both; */
-}
-
-.data {
-    /* border: green solid; */
-    /* top: 0; */
-    position: relative;
-    /* display: block; */
-    /* height: 200px; */
-    /* float: left; */
-}
-.col {
-    position: relative;
-    /* float: left; */
-    width: 320px;
-    border: grey solid thin;
-    /* height: 5cm; */
-    top: 0;
-    left: 0;
-    color: white;
-    background: #607D8B;
-    border: #4CAF50 solid thick;
-    border-radius: 20px;
-    font-size: 14pt;
-    font-family: sans-serif;
-    padding: 0.8em;
-    margin: 0.5em;
-    display: none;
-}
-
-@media print {
-  .data {
-    display: none;
-  }
-  .face, .center {
-    border: none
-  }
-  .all {
-    border: grey solid thin;
-  }
-}
-
-div#middle {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
-input[type="text"] {
-    position: absolute;
-    right: 10px;
-    border: none;
-    font-size: 13pt;
-    border-bottom: violet solid;
-    width: 160px;
-    margin-bottom: 3px;
-}
-.col h1 {
-    margin: 0;
-    padding: 0;
-    font-size: 1em;
-}
-
-.col p {
-    margin: 4px 0;
-    line-height: 1.4em;
-}
-
-label {
-    width: 100%;
-}
-
-
-input[type="color"] {
-    position: absolute;
-    right: 10px;
-    width: 160px;
-    box-sizing: border-box;
-    padding: 0;
-}
-</style>
+  <link rel="stylesheet" href="cover.css">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
   <title>Cover</title>
 </head>
 <body>
@@ -151,64 +17,68 @@ input[type="color"] {
   </div>
 </div>
 <div class="data">
-<div class="col" id="back-tab">
-<h1>Back:</h1>
-<p><label for="back_file">
-    Image: <input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" />
-</label></p>
-<p><label for="back_file">
-  Background: <input type="color" id="back_bg" value="#ffffff" onchange="changeAttribute(this)" data-dst="back" data-attr="background"/>
-</label></p>
+<div class="col measure" id="back-tab">
+<h1>Back</h1>
+<div class="mt1">
+<label class="db fw6 lh-copy f6" for="back_file">Image</label>
+<input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" />
 </div>
-<div class="col" id="center-tab">
-<h1>Center:</h1>
-<p><label for="back_file">
-Text: <input type="text" value="Title of the Book" onchange="updateTitle(this)" data-dst="title">
-</label></p>
-<p><label for="back_file">
-Background: <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="title" data-attr="background"/>
-</label></p>
-<p><label for="back_file">
-  Foreground: <input type="color" value="#000000" onchange="changeAttribute(this)" data-dst="title" data-attr="color"/>
-</label></p>
-<p><label for="back_file">
-  Width: <input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="width"/>
-</label></p>
-<p><label for="back_file">
-     Line Size: <input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="line-height"/>
-</label></p>
-<p><label for="back_file">
-  Font Size(mm) <input type="text" value="15mm" onchange="changeAttribute(this)" data-dst="title" data-attr="font-size"/>
-</label></p>
-<p><label for="back_file">
-  Font:
-  <select id="selectFontFamily" name="selectFontFamily" onchange="updateFontfamily(this)">
+<div class="mv1"><label class="db fw6 lh-copy f6" for="back_file">Background</label>
+<input type="color" id="back_bg" value="#ffffff" onchange="changeAttribute(this)" data-dst="back" data-attr="background"/>
+</div>
+</div>
+<div class="col measure" id="center-tab">
+<h1>Center</h1>
+<div class="dt dt--fixed"><div class="dtc">
+<div><label class="db fw6 lh-copy f6" for="back_file">Text</label>
+<input type="text" value="Title of the Book" onchange="updateTitle(this)" data-dst="title"></div>
+<div><label class="db fw6 lh-copy f6" for="back_file">Background</label>
+<input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="title" data-attr="background"/></div>
+<div><label class="db fw6 lh-copy f6" for="back_file"> Foreground</label>
+<input type="color" value="#000000" onchange="changeAttribute(this)" data-dst="title" data-attr="color"/></div>
+<div><label class="db fw6 lh-copy f6" for="back_file"> Width</label>
+<input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="width"/></div>
+</div>
+<div class="dtc">
+<div><label class="db fw6 lh-copy f6" for="back_file"> Line Size</label>
+<input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="line-height"/></div>
+<div><label class="db fw6 lh-copy f6" for="back_file"> Font Size</label>
+<input type="text" value="15mm" onchange="changeAttribute(this)" data-dst="title" data-attr="font-size"/></div>
+<div><label class="db fw6 lh-copy f6" for="back_file"> Font</label>
+  <select class="f6" id="selectFontFamily" name="selectFontFamily" onchange="updateFontfamily(this)">
     <option> Serif </option>
-    <option> Arial </option>
     <option> Sans-Serif </option>
+    <option> Monospace </option>
     <option> Tahoma </option>
     <option> Verdana </option>
     <option> Lucida Sans Unicode </option>
+<option style="font-family: Arial">Arial</option>
+<option style="font-family: Arial Black">Arial Black</option>
+<option style="font-family: Calibri">Calibri</option>
+<option style="font-family: Comic Sans MS">Comic Sans MS</option>
+<option style="font-family: Courier new">courier new</option>
+<option style="font-family: Impact">Impact</option>
+<option style="font-family: Libre Baskerville">Libre Baskerville</option>
+<option style="font-family: Martel Sans">Martel Sans</option>
+<option style="font-family: Unifraktur Cook">Unifraktur Cook</option>
     <option> Other ...</option>
-  </select>
-</label></p>
-<p><label for="back_file">
-Other font: <input id="other_font" type="text" value="" onchange="loadFont(this)"/>
-</label></p>
+</select>
 </div>
-<div class="col" id="front-tab">
-<p><label for="front_file">
-  Front: <input type="file" id="front_file" data-dst="front" name="files[]" onchange="handleFileSelect(this)"/>
-</label></p>
-<p><label for="back_file">
-  Width: <input type="text" value="100mm" onchange="changeAttribute(this)" data-dst="front" data-attr="width"/>
-</label></p>
-<p><label for="back_file">
-  Height: <input type="text" value="131mm" onchange="changeAttribute(this)" data-dst="todo" data-attr="height"/>
-</label></p>
-<p><label for="back_file">
-  Background: <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="front" data-attr="background" />
-</label></p>
+<div><label class="db fw6 lh-copy f6" for="back_file"> Other font</label>
+<input id="other_font" type="text" value="" onchange="loadFont(this)"/></div>
+</div>
+</div>
+</div>
+<div class="col measure" id="front-tab">
+<h1>Front</h1>
+<div><label class="db fw6 lh-copy f6" for="front_file"> Image</label>
+<input type="file" id="front_file" data-dst="front" name="files[]" onchange="handleFileSelect(this)"/></div>
+<div><label class="db fw6 lh-copy f6" for="back_file"> Background</label>
+<input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="front" data-attr="background" /></div>
+<div><label class="db fw6 lh-copy f6" for="back_file"> Width</label>
+<input type="text" value="100mm" onchange="changeAttribute(this)" data-dst="front" data-attr="width"/></div>
+<div><label class="db fw6 lh-copy f6" for="back_file"> Height</label>
+<input type="text" value="131mm" onchange="changeAttribute(this)" data-dst="todo" data-attr="height"/></div>
 </div>
 </div>
 
