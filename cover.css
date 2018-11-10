@@ -2,10 +2,11 @@ body {
   box-sizing: border-box;
 }
 .all {
-  /* position: absolute; */
-  /* width: 30cm; */
-  height: 13.1cm;
-  /* float: left; */
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 15cm;
+  height: 12cm;
+  border: solid darkmagenta;
 }
 
 .all::after {
@@ -15,16 +16,17 @@ body {
 }
 
 .face {
-  overflow: hidden;
+  display: inline-block;
+  overflow: visible;
   box-sizing: border-box;
   float: left;
-  width: 120mm;
+  min-width: 80mm;
   height: 100%;
   border: grey 1px dashed;
 }
 
 .center {
-  width: 2cm;
+  /* width: 2cm; */
   height: 100%;
   float: left;
   border-top: grey thin dashed;
@@ -42,6 +44,7 @@ body {
 }
 
 img {
+    box-sizing: border-box;
     border: blue solid thin;
     max-width: 100%;
     max-height: 100%;
@@ -63,17 +66,10 @@ img {
 }
 .col {
     position: relative;
-    /* float: left; */
-    /* width: 320px; */
     border: grey solid thin;
-    /* height: 5cm; */
     top: 0;
     left: 0;
-    /* color: white; */
-    /* background: #607D8B; */
-    /* border: #4CAF50 solid thick; */
-    /* border-radius: 20px; */
-    font-size: 14pt;
+    font-size: 11pt;
     font-family: sans-serif;
     padding: 0.8em;
     margin: 0.5em;
@@ -84,7 +80,7 @@ img {
   .data {
     display: none;
   }
-  .face, .center {
+  .face, .center, img {
     border: none
   }
   .all {

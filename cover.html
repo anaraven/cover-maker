@@ -2,33 +2,32 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="cover.css">
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="cover.css">
   <title>Cover</title>
 </head>
 <body>
 <div class="all" id="todo">
   <div class="face" id="back" onclick="showBlock(this)" data-dst="back-tab">
   </div>
-  <div class="center" id="title" onclick="showBlock(this)" data-dst="center-tab">
+  <div class="center" id="title" onclick="showBlock(this)" data-dst="center-tab"
+	style="width: 20mm;">
     Title of the book
   </div>
   <div class="face" id="front" onclick="showBlock(this)" data-dst="front-tab">
   </div>
 </div>
 <div class="data">
-<div class="col measure" id="back-tab">
-<h1>Back</h1>
+<fieldset class="col measure" id="back-tab">
+<legend class="f4 ph1">Back</legend>
 <div class="mt1">
 <label class="db fw6 lh-copy f6" for="back_file">Image</label>
-<input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" />
-</div>
+<input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" /></div>
 <div class="mv1"><label class="db fw6 lh-copy f6" for="back_file">Background</label>
-<input type="color" id="back_bg" value="#ffffff" onchange="changeAttribute(this)" data-dst="back" data-attr="background"/>
-</div>
-</div>
-<div class="col measure" id="center-tab">
-<h1>Center</h1>
+<input type="color" id="back_bg" value="#ffffff" onchange="changeAttribute(this)" data-dst="back" data-attr="background"/></div>
+</fieldset>
+<fieldset class="col measure" id="center-tab">
+<legend class="f4 ph1">Center</legend>
 <div class="dt dt--fixed"><div class="dtc">
 <div><label class="db fw6 lh-copy f6" for="back_file">Text</label>
 <input type="text" value="Title of the Book" onchange="updateTitle(this)" data-dst="title"></div>
@@ -64,13 +63,13 @@
     <option> Other ...</option>
 </select>
 </div>
-<div><label class="db fw6 lh-copy f6" for="back_file"> Other font</label>
+<div><label class="db fw6 lh-copy f6" for="back_file"><a href="https://wordmark.it/" target="_blank">Other font</a></label>
 <input id="other_font" type="text" value="" onchange="loadFont(this)"/></div>
 </div>
 </div>
-</div>
-<div class="col measure" id="front-tab">
-<h1>Front</h1>
+</fieldset>
+<fieldset class="col measure" id="front-tab">
+<legend class="f4 ph1">Front</legend>
 <div><label class="db fw6 lh-copy f6" for="front_file"> Image</label>
 <input type="file" id="front_file" data-dst="front" name="files[]" onchange="handleFileSelect(this)"/></div>
 <div><label class="db fw6 lh-copy f6" for="back_file"> Background</label>
@@ -79,7 +78,7 @@
 <input type="text" value="100mm" onchange="changeAttribute(this)" data-dst="front" data-attr="width"/></div>
 <div><label class="db fw6 lh-copy f6" for="back_file"> Height</label>
 <input type="text" value="131mm" onchange="changeAttribute(this)" data-dst="todo" data-attr="height"/></div>
-</div>
+</fieldset>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
