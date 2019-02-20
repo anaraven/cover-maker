@@ -128,3 +128,96 @@ input[type="color"] {
     /* padding: 0; */
 }
 
+canvas {
+  /* border: solid darkgreen thick; */
+  max-width: 100%;
+  max-height: 100%;
+}
+#info {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  display: none;
+  outline: 1px solid #fff;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  width: 181px;
+  z-index: 2;
+}
+
+#zoomer {
+  background-image: -moz-linear-gradient(-45deg, #eee 25%, #ddd 25%, #ddd 50%, #eee 50%, #eee 75%, #ddd 75%);
+  background-image: -o-linear-gradient(-45deg, #eee 25%, #ddd 25%, #ddd 50%, #eee 50%, #eee 75%, #ddd 75%);
+  background-image: -webkit-linear-gradient(-45deg, #eee 25%, #ddd 25%, #ddd 50%, #eee 50%, #eee 75%, #ddd 75%);
+  background-size: 20px 20px;
+  border: 1px solid #fff;
+  height: 81px;
+  outline: 1px solid #000;
+  overflow: hidden;
+  position: relative;
+}
+
+#zoomed {
+  position: relative;
+}
+
+#crosshair {
+  left: 84px;
+  position: absolute;
+  top: 35px;
+  z-index: 3;
+}
+
+#hover {
+  border-bottom: 1px solid #000;
+}
+
+.color-info {
+  background: -moz-linear-gradient(top, #eee, #ddd);
+  background: -o-linear-gradient(top, #eee, #ddd);
+  background: -webkit-linear-gradient(top, #eee, #ddd);
+  border-top: 1px solid #fff;
+  font-family: monospace;
+  font-size: 12px;
+  padding: 5px;
+  text-shadow: 0px 1px 0px #fff;
+}
+
+.color-info:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+
+.color-info input {
+  background-color: transparent;
+  border: 0;
+  font-family: monospace;
+  font-size: 11px;
+  outline: 0;
+  padding: 0;
+  text-shadow: 0px 1px 0px #fff;
+}
+
+.color-preview {
+  background: #fff;
+  border: 1px solid #fff;
+  float: right;
+  height: 48px;
+  outline: 1px solid #000;
+  width: 48px;
+  z-index: 2;
+}
+
+#coord {
+  font-size: 10px;
+  left: 2px;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
