@@ -276,12 +276,8 @@ img.onload = function() {
     rgb_hover.value = r + ',' + g + ',' + b;
     color_hover.style.background= hex;
 
-    zoomed.style.left= -(zoom * e.offsetX) + (zoomer.offsetWidth) / 2;
-    zoomed.style.top = -(zoom * e.offsetX) + (zoomer.offsetHeight) / 2;
-  console.log( -(zoom * e.offsetX) + (zoomer.offsetWidth) / 2,
-	-(zoom * e.offsetX) + (zoomer.offsetHeight) / 2,
-	zoom * e.offsetX, zoomer.offsetWidth,
-	zoom * e.offsetX, zoomer.offsetHeight);
+    zoomed.style.left= (-(zoom * x) + (zoomer.clientWidth)/2)+"px";
+    zoomed.style.top = (-(zoom * y) + (zoomer.clientHeight)/2)+"px";
 
     drawCrosshair(ir, ig, ib)
   };
