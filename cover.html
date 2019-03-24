@@ -10,79 +10,83 @@
 </head>
 <body>
 <div class="all" id="all">
-  <div class="face" id="back" onclick="showBlock(this)" data-dst="back-tab">
+  <div class="face" id="back" onclick="showBlock(this,'back-tab')">
     <canvas></canvas>
   </div>
-  <div class="center" id="title" onclick="showBlock(this)" data-dst="center-tab"
-	style="width: 20mm;">
+  <div class="center" id="title" onclick="showBlock(this,'center-tab')" style="width: 20mm;">
     Title of the book
   </div>
-  <div class="face" id="front" onclick="showBlock(this)" data-dst="front-tab">
+  <div class="face" id="front" onclick="showBlock(this,'front-tab')">
     <canvas id="source"></canvas>
   </div>
 </div>
 
-<div class="data">
-<fieldset class="col measure" id="back-tab">
-<legend class="f4 ph1">Back</legend>
-<div class="mt1">
-<label class="db fw6 lh-copy f6" for="back_file">Image</label>
-<input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" /></div>
-<div class="mv1"><label class="db fw6 lh-copy f6" for="back_file">Background</label>
-<input type="color" id="back_bg" value="#ffffff" onchange="changeAttribute(this)" data-dst="back" data-attr="background"/></div>
+<div class="data w3-border">
+<div class="w3-bar w3-border-bottom w3-light-grey intronav">
+  <button class="w3-bar-item w3-button" onclick="showBlock(this,'front-tab')">Front</button>
+  <button class="w3-bar-item w3-button" onclick="showBlock(this,'center-tab')">Center</button>
+  <button class="w3-bar-item w3-button" onclick="showBlock(this,'back-tab')">Back</button>
+</div>
+<fieldset class="col measure" id="back-tab" style="display: none;">
+  <legend class="f4 ph1">Back</legend>
+  <div class="mt1">
+  <label class="db fw6 lh-copy f6" for="back_file">Image</label>
+  <input type="file" id="back_file" name="files[]" onchange="handleFileSelect(this)" data-dst="back" /></div>
+  <div class="mv1"><label class="db fw6 lh-copy f6" for="back_file">Background</label>
+  <input type="color" id="back_bg" value="#ffffff" onchange="changeAttribute(this)" data-dst="back" data-attr="background"/></div>
 </fieldset>
-<fieldset class="col measure" id="center-tab">
-<legend class="f4 ph1">Center</legend>
-<div class="dt dt--fixed"><div class="dtc">
-<div><label class="db fw6 lh-copy f6" for="back_file">Text</label>
-<input type="text" value="Title of the Book" onchange="updateTitle(this)" data-dst="title"></div>
-<div><label class="db fw6 lh-copy f6" for="back_file">Background</label>
-<input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="title" data-attr="background"/></div>
-<div><label class="db fw6 lh-copy f6" for="back_file"> Foreground</label>
-<input type="color" value="#000000" onchange="changeAttribute(this)" data-dst="title" data-attr="color"/></div>
-<div><label class="db fw6 lh-copy f6" for="back_file"> Width</label>
-<input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="width"/></div>
-</div>
-<div class="dtc">
-<div><label class="db fw6 lh-copy f6" for="back_file"> Line Size</label>
-<input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="line-height"/></div>
-<div><label class="db fw6 lh-copy f6" for="back_file"> Font Size</label>
-<input type="text" value="15mm" onchange="changeAttribute(this)" data-dst="title" data-attr="font-size"/></div>
-<div><label class="db fw6 lh-copy f6" for="back_file"> Font</label>
-  <select class="f6" id="selectFontFamily" name="selectFontFamily" onchange="updateFontfamily(this)">
-    <option> Serif </option>
-    <option> Sans-Serif </option>
-    <option> Monospace </option>
-    <option> Tahoma </option>
-    <option> Verdana </option>
-    <option> Lucida Sans Unicode </option>
-<option style="font-family: Arial">Arial</option>
-<option style="font-family: Arial Black">Arial Black</option>
-<option style="font-family: Calibri">Calibri</option>
-<option style="font-family: Comic Sans MS">Comic Sans MS</option>
-<option style="font-family: Courier new">courier new</option>
-<option style="font-family: Impact">Impact</option>
-<option style="font-family: Libre Baskerville">Libre Baskerville</option>
-<option style="font-family: Martel Sans">Martel Sans</option>
-<option style="font-family: Unifraktur Cook">Unifraktur Cook</option>
-    <option> Other ...</option>
-</select>
-</div>
-<div><label class="db fw6 lh-copy f6" for="back_file"><a href="https://wordmark.it/" target="_blank">Other font</a></label>
-<input id="other_font" type="text" value="" onchange="loadFont(this)"/></div>
-</div>
-</div>
+<fieldset class="col measure" id="center-tab" style="display: none;">
+  <legend class="f4 ph1">Center</legend>
+  <div class="dt dt--fixed"><div class="dtc">
+  <div><label class="db fw6 lh-copy f6" for="back_file">Text</label>
+  <input type="text" value="Title of the Book" onchange="updateTitle(this)" data-dst="title"></div>
+  <div><label class="db fw6 lh-copy f6" for="back_file">Background</label>
+  <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="title" data-attr="background"/></div>
+  <div><label class="db fw6 lh-copy f6" for="back_file"> Foreground</label>
+  <input type="color" value="#000000" onchange="changeAttribute(this)" data-dst="title" data-attr="color"/></div>
+  <div><label class="db fw6 lh-copy f6" for="back_file"> Width</label>
+  <input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="width"/></div>
+  </div>
+  <div class="dtc">
+  <div><label class="db fw6 lh-copy f6" for="back_file"> Line Size</label>
+  <input type="text" value="20mm" onchange="changeAttribute(this)" data-dst="title" data-attr="line-height"/></div>
+  <div><label class="db fw6 lh-copy f6" for="back_file"> Font Size</label>
+  <input type="text" value="15mm" onchange="changeAttribute(this)" data-dst="title" data-attr="font-size"/></div>
+  <div><label class="db fw6 lh-copy f6" for="back_file"> Font</label>
+    <select class="f6" id="selectFontFamily" name="selectFontFamily" onchange="updateFontfamily(this)">
+      <option> Serif </option>
+      <option> Sans-Serif </option>
+      <option> Monospace </option>
+      <option> Tahoma </option>
+      <option> Verdana </option>
+      <option> Lucida Sans Unicode </option>
+      <option style="font-family: Arial">Arial</option>
+      <option style="font-family: Arial Black">Arial Black</option>
+      <option style="font-family: Calibri">Calibri</option>
+      <option style="font-family: Comic Sans MS">Comic Sans MS</option>
+      <option style="font-family: Courier new">courier new</option>
+      <option style="font-family: Impact">Impact</option>
+      <option style="font-family: Libre Baskerville">Libre Baskerville</option>
+      <option style="font-family: Martel Sans">Martel Sans</option>
+      <option style="font-family: Unifraktur Cook">Unifraktur Cook</option>
+      <option> Other ...</option>
+    </select>
+  </div>
+  <div><label class="db fw6 lh-copy f6" for="back_file"><a href="https://wordmark.it/" target="_blank">Other font</a></label>
+  <input id="other_font" type="text" value="" onchange="loadFont(this)"/></div>
+  </div>
+  </div>
 </fieldset>
 <fieldset class="col measure" id="front-tab">
-<legend class="f4 ph1">Front</legend>
-<div><label class="db fw6 lh-copy f6" for="front_file"> Image</label>
-<input type="file" id="front_file" data-dst="front" name="files[]" onchange="handleFileSelect(this)"/></div>
-<div><label class="db fw6 lh-copy f6" for="back_file"> Background</label>
-<input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="front" data-attr="background" /></div>
-<div><label class="db fw6 lh-copy f6" for="back_file"> Width</label>
-<input type="text" value="100mm" onchange="changeAttribute(this)" data-dst="front" data-attr="width"/></div>
-<div><label class="db fw6 lh-copy f6" for="back_file"> Height</label>
-<input type="text" value="131mm" onchange="changeAttribute(this)" data-dst="all" data-attr="height"/></div>
+  <legend class="f4 ph1">Front</legend>
+  <div><label class="db fw6 lh-copy f6" for="front_file"> Image</label>
+  <input type="file" id="front_file" data-dst="front" name="files[]" onchange="handleFileSelect(this)"/></div>
+  <div><label class="db fw6 lh-copy f6" for="back_file"> Background</label>
+  <input type="color" value="#ffffff" onchange="changeAttribute(this)" data-dst="front" data-attr="background" /></div>
+  <div><label class="db fw6 lh-copy f6" for="back_file"> Width</label>
+  <input type="text" value="100mm" onchange="changeAttribute(this)" data-dst="front" data-attr="width"/></div>
+  <div><label class="db fw6 lh-copy f6" for="back_file"> Height</label>
+  <input type="text" value="131mm" onchange="changeAttribute(this)" data-dst="all" data-attr="height"/></div>
 </fieldset>
 </div>
 
@@ -125,13 +129,16 @@ function handleFileSelect(tgt) {
     reader.onload = (function(theFile) {
       return function(e) {
         let img = new Image();
-	img.src = e.target.result;
-	img.title =  escape(theFile.name);
-        // document.getElementById(dst).appendChild(img);
-        let c = document.getElementById(dst).getElementsByTagName("canvas")[0];
-	c.width = img.width;
-        c.height = img.height;
-        c.getContext('2d').drawImage(img, 0, 0);
+        img.onload = function() {
+                img.title =  escape(theFile.name);
+                console.log(img.title, img.width, img.height, img.src);
+                // document.getElementById(dst).appendChild(img);
+                let c = document.getElementById(dst).getElementsByTagName("canvas")[0];
+                c.width = img.width;
+                c.height = img.height;
+                c.getContext('2d').drawImage(img, 0, 0);
+        };
+        img.src = e.target.result;
       };
     })(f);
     reader.readAsDataURL(f);
@@ -177,13 +184,26 @@ function updateTitle(tgt) {
   title.innerHTML = tgt.value;
 }
 
-function showBlock(tgt) {
-  var dst = tgt.dataset.dst
+function showBlock(tgt, dst) {
   var doc = document.getElementById(dst);
-  document.getElementById('back-tab').style["display"] = "none";
+  document.getElementById('back-tab').style.display = "none";
   document.getElementById('center-tab').style["display"] = "none";
   document.getElementById('front-tab').style["display"] = "none";
   doc.style["display"] = "block";
+  tablinks = document.getElementsByClassName("w3-bar-item");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  tgt.className += " w3-red";
+}
+
+function openTab(tabName) {
+  var i;
+  var x = document.getElementsByClassName("tab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
 }
 
 // “Update details” button opens the <dialog> modally
