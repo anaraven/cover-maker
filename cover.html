@@ -10,54 +10,92 @@
 </head>
 <body>
 <div class="all" id="all">
-  <div class="face" id="back" onclick="showBlock(this,'back-tab')">
+  <div class="face back part" id="back" onclick="showBlock(this,'back-tab')">
     <canvas id="back_src"></canvas>
   </div>
-  <div class="center" id="title" onclick="showBlock(this,'center-tab')" style="width: 20mm;">
+  <div class="center part" id="title" onclick="showBlock(this,'center-tab')" style="width: 20mm;">
     Title of the book
   </div>
-  <div class="face" id="front" onclick="showBlock(this,'front-tab')">
+  <div class="face front part" id="front" onclick="showBlock(this,'front-tab')">
     <canvas id="source"></canvas>
   </div>
 </div>
 
 <div class="data w3-border">
 <div class="w3-bar w3-border-bottom w3-light-grey intronav">
-  <button class="w3-bar-item w3-button" onclick="showBlock(this,'front-tab')">Front</button>
-  <button class="w3-bar-item w3-button" onclick="showBlock(this,'center-tab')">Center</button>
-  <button class="w3-bar-item w3-button" onclick="showBlock(this,'back-tab')">Back</button>
+  <button class="w3-bar-item w3-button front"
+	  onclick="showBlock(this,'front-tab')">Front</button>
+  <button class="w3-bar-item w3-button center"
+	  onclick="showBlock(this,'center-tab')">Center</button>
+  <button class="w3-bar-item w3-button back"
+	  onclick="showBlock(this,'back-tab')">Back</button>
 </div>
-<fieldset class="col measure" id="front-tab">
+
+<fieldset class="col measure front tab" id="front-tab">
   <legend class="f4 ph1">Front</legend>
-  <div><label class="db fw6 lh-copy f6" for="front_file"> Image</label>
-  <input type="file" id="front_file" name="files[]" onchange="fileSelect(this,'front')"/></div>
-  <div><label class="db fw6 lh-copy f6" for="front_bg"> Background</label>
-  <input type="color" id="front_bg" value="#ffffff" onchange="changeAttribute(this,'front','background')"/>
-  <a href="#" onclick="createImage('source')">Pick Color</a></div>
-  <div><label class="db fw6 lh-copy f6" for="front_wd"> Width</label>
-  <input type="text" id="front_wd" value="100mm" onchange="changeAttribute(this,'front','width'); changeAttribute(this,'back','width')"/></div>
-  <div><label class="db fw6 lh-copy f6" for="front_height"> Height</label>
-  <input type="text" id="front_height" value="131mm" onchange="changeAttribute(this,'all','height')"/></div>
+  <div>
+	  <label class="db fw6 lh-copy f6" for="front_file"> Image</label>
+	  <input type="file" id="front_file" name="files[]"
+	  	onchange="fileSelect(this,'front')"/>
+  </div>
+  <div>
+	  <label class="db fw6 lh-copy f6" for="front_bg"> Background</label>
+	  <input type="color" id="front_bg" value="#ffffff"
+	  	onchange="changeAttribute(this,'front','background')"/>
+  </div>
+  <div>
+	  <label class="db fw6 lh-copy f6" for="front_wd"> Width</label>
+	  <input type="text" id="front_wd" value="100mm"
+	  	onchange="changeAttribute(this,'front','width');
+			  changeAttribute(this,'back','width')"/>
+  </div>
+  <div>
+	  <label class="db fw6 lh-copy f6" for="front_height"> Height</label>
+	  <input type="text" id="front_height" value="131mm"
+	  	onchange="changeAttribute(this,'all','height')"/>
+  </div>
 </fieldset>
 <fieldset class="col measure" id="center-tab" style="display: none;">
   <legend class="f4 ph1">Center</legend>
-  <div class="dt dt--fixed"><div class="dtc">
-  <div><label class="db fw6 lh-copy f6" for="back_file">Text</label>
-  <input type="text" value="Title of the Book" onchange="updateTitle(this)"></div>
-  <div><label class="db fw6 lh-copy f6" for="back_file">Background</label>
-  <input type="color" value="#ffffff" onchange="changeAttribute(this,'title','background')"/></div>
-  <div><label class="db fw6 lh-copy f6" for="back_file"> Foreground</label>
-  <input type="color" value="#000000" onchange="changeAttribute(this,'title','color')"/></div>
-  <div><label class="db fw6 lh-copy f6" for="back_file"> Width</label>
-  <input type="text" value="20mm" onchange="changeAttribute(this,'title','width')"/></div>
-  </div>
-  <div class="dtc">
-  <div><label class="db fw6 lh-copy f6" for="back_file"> Line Size</label>
-  <input type="text" value="20mm" onchange="changeAttribute(this,'title','line-height')"/></div>
-  <div><label class="db fw6 lh-copy f6" for="back_file"> Font Size</label>
-  <input type="text" value="15mm" onchange="changeAttribute(this,'title','font-size')"/></div>
-  <div><label class="db fw6 lh-copy f6" for="back_file"> Font</label>
-    <select class="f6" id="selectFontFamily" name="selectFontFamily" onchange="updateFontfamily(this)">
+  <div class="dt dt--fixed">
+    <div class="dtc">
+       <div>
+	<label class="db fw6 lh-copy f6" for="back_file">Text</label>
+	<input type="text" value="Title of the Book"
+		onchange="updateTitle(this)">
+       </div>
+       <div>
+	<label class="db fw6 lh-copy f6" for="back_file">Background</label>
+	<input type="color" value="#ffffff"
+		onchange="changeAttribute(this,'title','background')"/>
+	<a href="#" onclick="createImage('source','title','background')">Pick Color</a>
+       </div>
+       <div>
+	<label class="db fw6 lh-copy f6" for="back_file"> Foreground</label>
+	<input type="color" value="#000000"
+		onchange="changeAttribute(this,'title','color')"/>
+       </div>
+       <div>
+	<label class="db fw6 lh-copy f6" for="back_file"> Width</label>
+	  <input type="text" value="20mm"
+	  	onchange="changeAttribute(this,'title','width')"/>
+       </div>
+     </div>
+     <div class="dtc">
+       <div>
+	<label class="db fw6 lh-copy f6" for="back_file"> Line Size</label>
+	<input type="text" value="20mm"
+		onchange="changeAttribute(this,'title','line-height')"/>
+       </div>
+       <div>
+	  <label class="db fw6 lh-copy f6" for="back_file"> Font Size</label>
+	  <input type="text" value="15mm"
+	  	onchange="changeAttribute(this,'title','font-size')"/>
+       </div>
+       <div>
+	  <label class="db fw6 lh-copy f6" for="back_file"> Font</label>
+	    <select class="f6" id="selectFontFamily" name="selectFontFamily"
+		    onchange="updateFontfamily(this)">
       <option> Serif </option>
       <option> Sans-Serif </option>
       <option> Monospace </option>
@@ -240,12 +278,13 @@ color_hover= document.getElementById("color-hover");
 ztx = zoomed.getContext('2d');
 
 // “Update details” button opens the <dialog> modally
-function createImage(canvas_id) {
+function createImage(canvas_id, tab_id, attr_id) {
   // info.onmouseleave = function() {
   //   $(this).find('input').blur()
   // };
 
   const zoom = 3;
+  // var tab = document.getElementById(tab_id);
   var canvas = document.getElementById(canvas_id);
   var ctx = canvas.getContext('2d');
   let img = new Image()
@@ -259,16 +298,19 @@ img.onload = function() {
   ztx.drawImage(img, 0, 0, zoomed.width, zoomed.height)
 
   info.style.display = "block";
-
+  var hex;
+  canvas.onclick = function(e) {
+	changeAttribute(tab_id,attr_id, hex)
+  }
   canvas.onmousemove = function(e) {
     var x = e.offsetX/canvas.clientWidth *canvas.width,
 	y = e.offsetY/canvas.clientHeight*canvas.height,
 	d = ctx.getImageData(x, y, 1, 1).data,
 	r = d[0], g = d[1], b = d[2],
 	ir = 255 - r, ig = 255 - g, ib = 255 - b,
-	hex = rgbToHex(r, g, b),
 	inv = rgbToHex(ir, ig, ib);
 
+    hex = rgbToHex(r, g, b);
     // console.log( x + ' x ' + y, hex);
     coord.innerHtml = x + ' x ' + y;
     coord.style.color= inv;
