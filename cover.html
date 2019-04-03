@@ -36,7 +36,7 @@
   
   <fieldset class="col measure front tab" id="front-tab">
     <legend class="f4 ph1">Front</legend>
-    <div class="dtc">
+    <!-- <div class="dtc">
       <div>
         <label class="db fw6 lh-copy f6" for="back_file">Text</label>
   	    <input type="text" value="Title of the Book"
@@ -58,28 +58,28 @@
       <a href="#" onclick="createImage('source','title','background')">
           Pick Color
       </a>
-    </div>
+      </div>
       <div>
       <label class="db fw6 lh-copy f6" for="back_file">
          Foreground
       </label>
       <input type="color" value="#000000"
 	        onchange="front.fg_color=this.value"/>
-    </div>
+      </div>
       <div>
 	    <label class="db fw6 lh-copy f6" for="front_wd">
         Width
       </label>
 	    <input type="text" id="front_wd" value="100mm"
 	    	onchange="front.width=this.value; back.width=this.value"/>
-    </div>
+      </div>
       <div>
 	    <label class="db fw6 lh-copy f6" for="front_height">
         Height
       </label>
 	    <input type="text" id="front_height" value="131mm"
 	    	onchange="front.height = back.height = side.height = this.value;"/>
-    </div>
+      </div>
     </div>
     <div class="dtc">
       <div>
@@ -115,11 +115,11 @@
           <option style="font-family: Unifraktur Cook">Unifraktur Cook</option>
           <option> Other ...</option>
         </select>
-    </div>
+    </div> -->
   </fieldset>
   <fieldset class="col measure" id="center-tab" style="display: none;">
     <legend class="f4 ph1">Center</legend>
-    <div class="dt dt--fixed">
+    <!-- <div class="dt dt--fixed">
       <div class="dtc">
         <div>
           <label class="db fw6 lh-copy f6" for="back_file">Text</label>
@@ -181,37 +181,37 @@
         <div>
     	    <label class="db fw6 lh-copy f6" for="back_file"> Font</label>
     	    <select class="f6" id="selectFontFamily" name="selectFontFamily"
-    		    onchange="side.fontFamily = this.options[this.selectedIndex].value;">
-          <option> Serif </option>
-          <option> Sans-Serif </option>
-          <option> Monospace </option>
-          <option> Tahoma </option>
-          <option> Verdana </option>
-          <option> Lucida Sans Unicode </option>
-          <option style="font-family: Arial">Arial</option>
-          <option style="font-family: Arial Black">Arial Black</option>
-          <option style="font-family: Calibri">Calibri</option>
-          <option style="font-family: Comic Sans MS">Comic Sans MS</option>
-          <option style="font-family: Courier new">courier new</option>
-          <option style="font-family: Impact">Impact</option>
-          <option style="font-family: Libre Baskerville">Libre Baskerville</option>
-          <option style="font-family: Martel Sans">Martel Sans</option>
-          <option style="font-family: Unifraktur Cook">Unifraktur Cook</option>
-          <option> Other ...</option>
-        </select>
+      		    onchange="side.fontFamily = this.options[this.selectedIndex].value;">
+            <option> Serif </option>
+            <option> Sans-Serif </option>
+            <option> Monospace </option>
+            <option> Tahoma </option>
+            <option> Verdana </option>
+            <option> Lucida Sans Unicode </option>
+            <option style="font-family: Arial">Arial</option>
+            <option style="font-family: Arial Black">Arial Black</option>
+            <option style="font-family: Calibri">Calibri</option>
+            <option style="font-family: Comic Sans MS">Comic Sans MS</option>
+            <option style="font-family: Courier new">courier new</option>
+            <option style="font-family: Impact">Impact</option>
+            <option style="font-family: Libre Baskerville">Libre Baskerville</option>
+            <option style="font-family: Martel Sans">Martel Sans</option>
+            <option style="font-family: Unifraktur Cook">Unifraktur Cook</option>
+            <option> Other ...</option>
+          </select>
+        </div>
+        <div>
+          <label class="db fw6 lh-copy f6" for="back_file">
+            <a href="https://wordmark.it/" target="_blank">Other font</a>
+          </label>
+          <input id="other_font" type="text" value="" onchange="loadFont(this)"/>
+        </div>
       </div>
-      <div>
-        <label class="db fw6 lh-copy f6" for="back_file">
-          <a href="https://wordmark.it/" target="_blank">Other font</a>
-        </label>
-        <input id="other_font" type="text" value="" onchange="loadFont(this)"/>
-      </div>
-    </div>
-    </div>
+    </div> -->
   </fieldset>
   <fieldset class="col measure" id="back-tab" style="display: none;">
     <legend class="f4 ph1">Back</legend>
-    <div class="dtc">
+    <!-- <div class="dtc">
       <div>
         <label class="db fw6 lh-copy f6" for="back_file">Text</label>
     	    <input type="text" value="Title of the Book"
@@ -250,22 +250,22 @@
       </div>
     </div>
     <div class="dtc">
-    <div>
-      <label class="db fw6 lh-copy f6" for="back_file">
-        Line Size
-      </label>
-      <input type="text" value="20mm"
-  	    onchange="back.lineHeight=this.value"/>
-    </div>
-        <div>
-    	    <label class="db fw6 lh-copy f6" for="back_file"> Font Size</label>
-    	    <input type="text" value="15mm"
-    	  	  onchange="back.fontSize=this.value"/>
-        </div>
-        <div>
-    	    <label class="db fw6 lh-copy f6" for="back_file"> Font</label>
-    	    <select class="f6" id="selectFontFamily" name="selectFontFamily"
-    		    onchange="back.fontFamily = this.options[this.selectedIndex].value;">
+      <div>
+        <label class="db fw6 lh-copy f6" for="back_file">
+          Line Size
+        </label>
+        <input type="text" value="20mm"
+    	    onchange="back.lineHeight=this.value"/>
+      </div>
+      <div>
+        <label class="db fw6 lh-copy f6" for="back_file"> Font Size</label>
+        <input type="text" value="15mm"
+      	  onchange="back.fontSize=this.value"/>
+      </div>
+      <div>
+        <label class="db fw6 lh-copy f6" for="back_file"> Font</label>
+        <select class="f6" id="selectFontFamily" name="selectFontFamily"
+    	    onchange="back.fontFamily = this.options[this.selectedIndex].value;">
           <option> Serif </option>
           <option> Sans-Serif </option>
           <option> Monospace </option>
@@ -284,7 +284,7 @@
           <option> Other ...</option>
         </select>
       </div>
-    </div>
+    </div> -->
   </fieldset>
 </div>
 

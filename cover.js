@@ -6,11 +6,11 @@ class Face {
     this.ctx = this.canvas.getContext('2d');
     this.id=id;
     this.text=text;
+    this.width=width;
+    this.height=height;
     this.bg_image="";
     this.bg_color="none";
     this.fg_color="#00000";
-    this.width=width;
-    this.height=height;
     this.fontFamily="";
     this.fontSize=fontSize;
     this.lineHeight="20mm";
@@ -92,6 +92,36 @@ class Face {
   
 };
 
+class Input {
+  constructor(id, type) {
+    this.div = document.createElement("div");
+    this.label = document.createElement("label");
+    this.label.setAttribute("for", id);
+    this.label.setAttribute("class", "db fw6 lh-copy f6");
+    this.div.appendChild(this.label);
+    this.input = document.createElement("input");
+    this.input.setAttribute("type", type);
+    this.input.setAttribute("id", id);
+    this.div.appendChild(this.input);
+  }
+  Label(the_text) {
+    this.label.innerHTML = the_text;
+    return(this);
+  }
+  value(the_value) {
+    this.input.setAttribute("value", the_value);
+    return(this);
+  }
+  onchange(action) {
+    this.input.setAttribute("onchange", action);
+    return(this);
+  }
+  Name(action) {
+    this.input.setAttribute("name", action);
+    return(this);
+  }
+}
+
 class Pane {
   static families = ["Serif", "Sans-Serif", "Monospace", "Tahoma",
      "Verdana", "Lucida Sans Unicode", "Arial", "Arial Black", "Calibri",
@@ -99,36 +129,56 @@ class Pane {
     "Martel Sans", "Unifraktur Cook"];
   
   constructor(id, tgt) {
-    this.div = document.getElementById(id);
     this.id = id;
-    this.tgt = tgt;
     this.col1 = document.createElement("div");
+    this.col1.setAttribute("class", "dtc");
     this.col2 = document.createElement("div");
-    addInput(this.col1, "text", "Text", "text", id+".text=this.value")
-    addInput(this.col1, "files[]","Image", "file", id+".text=this.value")
+    this.col2.setAttribute("class", "dtc");
+
+    this.col1.appendChild(new Input("title", "text")
+      .Label("Text").value(tgt._text)
+      .onchange(tgt.id + ".text=this.value").div);
+    this.col2.appendChild(new Input("file", "file")
+      .Label("Image").Name("files[]")
+      .onchange(tgt.id + ".fileSelect(this)").div);
+    this.col1.appendChild(new Input("bg", "color")
+      .Label("Background").value(tgt._bg_color)
+      .onchange(tgt.id + ".bg_color=this.value").div);
+    this.col2.appendChild(new Input("fg", "color")
+      .Label("Foreground").value(tgt._fg_color)
+      .onchange(tgt.id + ".fg_color=this.value").div);
+    this.col1.appendChild(new Input("width", "text")
+      .Label("Width").value(tgt._width)
+      .onchange(tgt.id + ".width=this.value").div);
+    this.col2.appendChild(new Input("height", "text")
+      .Label("Height").value(tgt._height)
+      .onchange(tgt.id + ".height=this.value").div);
+    this.col1.appendChild(new Input("lineSize", "text")
+      .Label("Line Size").value(tgt._lineHeight)
+      .onchange(tgt.id + ".lineHeight=this.value").div);
+    this.col2.appendChild(new Input("fontSize", "text")
+      .Label("Font Size").value(tgt._fontSize)
+      .onchange(tgt.id + ".fontSize=this.value").div);
+    this.addSelect(this.col1, "fontFamily", "Font",
+      tgt.id + ".fontFamily = this.options[this.selectedIndex].value;")
+    
+    this.div = document.createElement("div");
+    this.div.setAttribute("class", "dt dt--fixed");
+    this.div.appendChild(this.col1);
+    this.div.appendChild(this.col2);
+    document.getElementById(id).appendChild(this.div);
   }
   
-  addInput(div, name, text, type, action) {
-    let a = document.createElement("div");
-    let b = document.createElement("label");
-    b.innerHTML = text;
-    b.setAttribute("for", name);
-    b.setAttribute("class", "db fw6 lh-copy f6");
-    let c = document.createElement("input");
-    c.setAttribute("type", type);
-    c.setAttribute("name", name);
-    a.appendChild(b);
-    a.appendChild(c);
-    div.appendChild(a);
-  }
-  
-  addSelect(div, name, text, type, action) {
+  addSelect(div, name, text, action) {
     let a = document.createElement("div");
     let b = document.createElement("label");
     b.innerHTML = text;
     b.setAttribute("for", name);
     b.setAttribute("class", "db fw6 lh-copy f6");
     let c = document.createElement("select");
+    c.setAttribute("id", name);
+    c.setAttribute("class", "f6");
+    c.setAttribute("onchange", action);
     for(let i in Pane.families) {
       let d = document.createElement("option");
       d.innerHTML = Pane.families[i];
