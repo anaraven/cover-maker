@@ -102,6 +102,41 @@ class Pane {
     this.div = document.getElementById(id);
     this.id = id;
     this.tgt = tgt;
+    this.col1 = document.createElement("div");
+    this.col2 = document.createElement("div");
+    addInput(this.col1, "text", "Text", "text", id+".text=this.value")
+    addInput(this.col1, "files[]","Image", "file", id+".text=this.value")
+  }
+  
+  addInput(div, name, text, type, action) {
+    let a = document.createElement("div");
+    let b = document.createElement("label");
+    b.innerHTML = text;
+    b.setAttribute("for", name);
+    b.setAttribute("class", "db fw6 lh-copy f6");
+    let c = document.createElement("input");
+    c.setAttribute("type", type);
+    c.setAttribute("name", name);
+    a.appendChild(b);
+    a.appendChild(c);
+    div.appendChild(a);
+  }
+  
+  addSelect(div, name, text, type, action) {
+    let a = document.createElement("div");
+    let b = document.createElement("label");
+    b.innerHTML = text;
+    b.setAttribute("for", name);
+    b.setAttribute("class", "db fw6 lh-copy f6");
+    let c = document.createElement("select");
+    for(let i in Pane.families) {
+      let d = document.createElement("option");
+      d.innerHTML = Pane.families[i];
+      c.appendChild(d);
+    }
+    a.appendChild(b);
+    a.appendChild(c);
+    div.appendChild(a);
   }
 };
 

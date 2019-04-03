@@ -37,19 +37,19 @@
   <fieldset class="col measure front tab" id="front-tab">
     <legend class="f4 ph1">Front</legend>
     <div class="dtc">
-    <div>
-      <label class="db fw6 lh-copy f6" for="back_file">Text</label>
+      <div>
+        <label class="db fw6 lh-copy f6" for="back_file">Text</label>
   	    <input type="text" value="Title of the Book"
            onchange="front.text=this.value">
-    </div>
-    <div>
-	    <label class="db fw6 lh-copy f6" for="front_file">
-        Image
-      </label>
-	    <input type="file" id="front_file" name="files[]"
-	    	onchange="front.fileSelect(this)"/>
-    </div>
-    <div>
+      </div>
+      <div>
+	      <label class="db fw6 lh-copy f6" for="front_file">
+          Image
+        </label>
+	      <input type="file" id="front_file" name="files[]"
+	    	  onchange="front.fileSelect(this)"/>
+      </div>
+      <div>
 	    <label class="db fw6 lh-copy f6" for="front_bg">
         Background
       </label>
@@ -59,42 +59,42 @@
           Pick Color
       </a>
     </div>
-    <div>
+      <div>
       <label class="db fw6 lh-copy f6" for="back_file">
          Foreground
       </label>
       <input type="color" value="#000000"
 	        onchange="front.fg_color=this.value"/>
     </div>
-    <div>
+      <div>
 	    <label class="db fw6 lh-copy f6" for="front_wd">
         Width
       </label>
 	    <input type="text" id="front_wd" value="100mm"
 	    	onchange="front.width=this.value; back.width=this.value"/>
     </div>
-    <div>
+      <div>
 	    <label class="db fw6 lh-copy f6" for="front_height">
         Height
       </label>
 	    <input type="text" id="front_height" value="131mm"
 	    	onchange="front.height = back.height = side.height = this.value;"/>
     </div>
-  </div>
-  <div class="dtc">
-    <div>
-      <label class="db fw6 lh-copy f6" for="back_file">
-        Line Size
-      </label>
-      <input type="text" value="20mm"
-  	    onchange="text.lineHeight=this.value"/>
     </div>
-        <div>
+    <div class="dtc">
+      <div>
+        <label class="db fw6 lh-copy f6" for="back_file">
+          Line Size
+        </label>
+        <input type="text" value="20mm"
+  	      onchange="text.lineHeight=this.value"/>
+      </div>
+      <div>
     	    <label class="db fw6 lh-copy f6" for="back_file"> Font Size</label>
     	    <input type="text" value="15mm"
     	  	  onchange="front.fontSize=this.value"/>
         </div>
-        <div>
+      <div>
     	    <label class="db fw6 lh-copy f6" for="back_file"> Font</label>
     	    <select class="f6" id="selectFontFamily" name="selectFontFamily"
     		    onchange="front.fontFamily = this.options[this.selectedIndex].value;">
@@ -115,7 +115,7 @@
           <option style="font-family: Unifraktur Cook">Unifraktur Cook</option>
           <option> Other ...</option>
         </select>
-      </div>
+    </div>
   </fieldset>
   <fieldset class="col measure" id="center-tab" style="display: none;">
     <legend class="f4 ph1">Center</legend>
@@ -249,7 +249,7 @@
   	    	onchange="front.width=this.value; back.width=this.value"/>
       </div>
     </div>
-  <div class="dtc">
+    <div class="dtc">
     <div>
       <label class="db fw6 lh-copy f6" for="back_file">
         Line Size
