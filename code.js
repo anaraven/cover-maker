@@ -157,11 +157,11 @@ img.onload = function() {
   }
   canvas.onmousemove = function(e) {
     var x = e.offsetX/canvas.clientWidth *canvas.width,
-	y = e.offsetY/canvas.clientHeight*canvas.height,
-	d = ctx.getImageData(x, y, 1, 1).data,
-	r = d[0], g = d[1], b = d[2],
-	ir = 255 - r, ig = 255 - g, ib = 255 - b,
-	inv = rgbToHex(ir, ig, ib);
+	      y = e.offsetY/canvas.clientHeight*canvas.height,
+	      d = ctx.getImageData(x, y, 1, 1).data,
+	      r = d[0], g = d[1], b = d[2],
+	      ir = 255 - r, ig = 255 - g, ib = 255 - b,
+	      inv = rgbToHex(ir, ig, ib);
 
     hex = rgbToHex(r, g, b);
     // console.log( x + ' x ' + y, hex);

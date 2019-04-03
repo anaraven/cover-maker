@@ -201,85 +201,68 @@ class Pane {
 };
 
 class ColorPicker {
-    function componentToHex(c) {
-      var hex = c.toString(16)
-      return hex.length == 1 ? "0" + hex : hex
-    }
+  static info = document.getElementById("info");
+  static zoomed = document.getElementById('zoomed');
+  static zoomer = document.getElementById("zoomer");
+  static coord = document.getElementById("coord");
+  static hex_hover = document.getElementById("hex-hover");
+  static rgb_hover = document.getElementById("rgb-hover");
+  static color_hover = document.getElementById("color-hover");
+  static ztx = zoomed.getContext('2d');
 
-    function rgbToHex(r, g, b) {
-      return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b)
-    }
+  static componentToHex(c) {
+    var hex = c.toString(16)
+    return hex.length == 1 ? "0" + hex : hex
+  }
 
-    function drawCrosshair(r, g, b) {
-      var ctx = document.getElementById('crosshair').getContext('2d')
-      ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',0.25)'
-      ctx.beginPath()
-      ctx.moveTo(5.5, 0)
-      ctx.lineTo(5.5, 4)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(7, 5.5)
-      ctx.lineTo(11, 5.5)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(5.5, 7)
-      ctx.lineTo(5.5, 11)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(0, 5.5)
-      ctx.lineTo(4, 5.5)
-      ctx.stroke()
-    }
+  static rgbToHex(r, g, b) {
+    return '#' + ColorPicker.componentToHex(r) + 
+                 ColorPicker.componentToHex(g) + 
+                 ColorPicker.componentToHex(b);
+  }
 
-    // “Update details” button opens the <dialog> modally
-    function createImage(canvas_id, tab_id, attr_id) {
-      // info.onmouseleave = function() {
-      //   $(this).find('input').blur()
-      // };
+  drawCrosshair(r, g, b) {
+    var ctx = document.getElementById('crosshair').getContext('2d')
+    ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',0.25)'
+    ctx.beginPath()
+    ctx.moveTo(5.5, 0)
+    ctx.lineTo(5.5, 4)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(7, 5.5)
+    ctx.lineTo(11, 5.5)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(5.5, 7)
+    ctx.lineTo(5.5, 11)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(0, 5.5)
+    ctx.lineTo(4, 5.5)
+    ctx.stroke()
+  }
+  
 
-      const zoom = 3;
-      // var tab = document.getElementById(tab_id);
-      var canvas = document.getElementById(canvas_id);
-      var ctx = canvas.getContext('2d');
-      let img = new Image()
+  constructor(src, tab_id, attr_id) {
+    // info.onmouseleave = function() {
+    //   $(this).find('input').blur()
+    // };
+    this.src=src;
+    const zoom = 3;
+    let img = new Image()
     img.onload = function() {
-      zoomed.width = img.width * zoom
-      zoomed.height = img.height * zoom
-      ztx.imageSmoothingEnabled = false
-      ztx.mozImageSmoothingEnabled = false
-      ztx.webkitImageSmoothingEnabled = false
+      ColorPicker.zoomed.width = img.width * zoom
+      ColorPicker.zoomed.height = img.height * zoom
+      ColorPicker.ztx.imageSmoothingEnabled = false
+      ColorPicker.ztx.mozImageSmoothingEnabled = false
+      ColorPicker.ztx.webkitImageSmoothingEnabled = false
       // ztx.putImageData(img, 0, 0)
-      ztx.drawImage(img, 0, 0, zoomed.width, zoomed.height)
+      ColorPicker.ztx.drawImage(img, 0, 0, zoomed.width, zoomed.height)
 
-      info.style.display = "block";
-      var hex;
-      canvas.onclick = function(e) {
-    	changeAttribute(tab_id,attr_id, hex)
-      }
-      canvas.onmousemove = function(e) {
-        var x = e.offsetX/canvas.clientWidth *canvas.width,
-    	y = e.offsetY/canvas.clientHeight*canvas.height,
-    	d = ctx.getImageData(x, y, 1, 1).data,
-    	r = d[0], g = d[1], b = d[2],
-    	ir = 255 - r, ig = 255 - g, ib = 255 - b,
-    	inv = rgbToHex(ir, ig, ib);
-
-        hex = rgbToHex(r, g, b);
-        // console.log( x + ' x ' + y, hex);
-        coord.innerHtml = x + ' x ' + y;
-        coord.style.color= inv;
-        hex_hover.value = hex;
-        rgb_hover.value = r + ',' + g + ',' + b;
-        color_hover.style.background= hex;
-
-        zoomed.style.left= (-(zoom * x) + (zoomer.clientWidth)/2)+"px";
-        zoomed.style.top = (-(zoom * y) + (zoomer.clientHeight)/2)+"px";
-
-        drawCrosshair(ir, ig, ib)
-      };
+      ColorPicker.info.style.display = "block";
     }
-      img.src=canvas.toDataURL()
-    }
+    img.src=src.canvas.toDataURL()
+  }
 
 }
 
@@ -302,3 +285,17 @@ side = new Face("side", "Book Title", "20mm", "131mm","20mm");
 front_tab=new Pane("front-tab", front)
 back_tab=new Pane("back-tab", back)
 side_tab=new Pane("center-tab", side)
+
+function getColor(src, tgt, attr) {
+  let canvas = src.canvas;
+  let ctx = src.ctx;
+  canvas.onclick = function(e) {
+    var x = e.offsetX/canvas.clientWidth *canvas.width,
+        y = e.offsetY/canvas.clientHeight*canvas.height,
+        d = ctx.getImageData(x, y, 1, 1).data,
+        r = d[0], g = d[1], b = d[2],
+        hex = ColorPicker.rgbToHex(r, g, b);
+    console.log(hex);
+    tgt[attr] = hex;
+  }
+}
