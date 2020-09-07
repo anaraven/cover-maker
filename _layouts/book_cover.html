@@ -84,7 +84,7 @@ img {
 <div class="all" id="todo">
   <div class="face" id="back">
     {% if page.back.img %}
-    <img src="{{page.back.img}}" alt="">
+    <img src="../{{page.back.img}}" alt="">
     {% endif %}
     {{content}}
   </div>
@@ -93,7 +93,7 @@ img {
   </div>
   <div class="face" id="front">
     {% if page.front.img %}
-    <img src="{{page.front.img}}" alt="">
+    <img src="../{{page.front.img}}" alt="">
     {% else %}
     <h1>{{title}}</h1>
     <h2>{{author}}</h2>
