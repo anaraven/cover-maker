@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <!-- link rel="stylesheet" href="cover.css" -->
+{% if page.font.url %}
+<link href="{{page.font.url}}" rel="stylesheet">
+{% else %}
+<link href="https://fonts.googleapis.com/css2?family={{page.font.family | replace: " ", "+" }}:wght@{{page.font.weight}}" rel="stylesheet">
+{% endif %}
+<style>
+body {
+  box-sizing: border-box;
+}
+.all {
+  width: fit-content;
+  height: {{ page.height }};
+  /* position: absolute; */
+  /* float: left; */
+}
+
+.face {
+  width: {{ page.width }};
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  float: left;
+  border: grey 1px dashed;
+}
+
+.center {
+  {% if page.pages %}
+  width: {{ page.pages | divided_by: 444.0 | plus: 0.06}}in;
+  line-height: {{ page.pages | divided_by: 444.0 | plus: 0.06}}in;
+  {% else %}
+  width: {{page.thickness}};
+  line-height: {{page.line_height | default: "2cm"}};
+  {% endif %}
+  height: 100%;
+  font-size: {{page.font.size | default: "15mm"}};
+  font-family: "{{page.font.family | default: "serif"}}";
+  color: {{page.color | default: "white"}};
+  background: {{page.background | default: "#E21D3C" }};
+  text-align: center;
+  vertical-align: middle;
+  writing-mode: vertical-rl;
+  float: left;
+  border-top: grey thin dashed;
+}
+
+img {
+    /* border: blue solid thin; */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#back {
+{% if page.back.img %}
+  padding: 0;
+{% else %}
+  line-height: {{page.back.line_height | default: "1.5em"}};
+  font-family: "{{page.back.family | default: "serif"}}";
+  font-size: {{page.back.size | default: "12pt"}};
+  color: {{page.back.color | default: "black"}};
+  background: {{page.back.background | default: "white" }};
+  padding: 1in;
+{% endif %}
+}
+
+@media print {
+  .face, .center {
+    border: none
+  }
+  .all {
+    padding: 0;
+    border: lightgrey solid thin;
+  }
+}
+</style>
+
+<title>{{page.title | strip_html}}</title>
+</head>
+<body>
+<div class="all" id="todo">
+  <div class="face" id="back">
+    {% if page.back.img %}
+    <img src="{{page.back.img}}" alt="">
+    {% endif %}
+    {{content}}
+  </div>
+  <div class="center" id="title">
+    {{page.title | default: "Title of the Book"}}
+  </div>
+  <div class="face" id="front">
+    {% if page.front.img %}
+    <img src="{{page.front.img}}" alt="">
+    {% else %}
+    <h1>{{title}}</h1>
+    <h2>{{author}}</h2>
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>

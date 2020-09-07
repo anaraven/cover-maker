@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <!-- link rel="stylesheet" href="cover.css" -->
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@300&display=swap" rel="stylesheet">
+<style>
+body {
+  box-sizing: border-box;
+}
+.all {
+  width: fit-content;
+  /* position: absolute; */
+  height: 9.2in;
+  /* float: left; */
+}
+
+.face {
+  width: 7in;
+  /* height: 9.2in; */
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  float: left;
+  border: grey 1px dashed;
+}
+
+.center {
+  width: 2cm;
+  /* height: 9.2in; */
+  height: 100%;
+  font-size: 15mm;
+  line-height: 2cm;
+  font-family: 'Bitter', serif;
+  color: white;
+  background: #E21D3C;
+  text-align: center;
+  vertical-align: middle;
+  writing-mode: vertical-rl;
+  float: left;
+  border-top: grey thin dashed;
+}
+
+img {
+    /* border: blue solid thin; */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+@media print {
+  .face, .center {
+    border: none
+  }
+  .all {
+    padding: 1mm;
+    border: lightgrey solid thin;
+  }
+}
+</style>
+
+<title>Cover</title>
+</head>
+<body>
+<div class="all" id="todo">
+  <div class="face" id="back">
+    <img src="back.jpg" alt="">
+  </div>
+  <div class="center" id="title">
+    Data Science from Scratch
+  </div>
+  <div class="face" id="front">
+    <img src="Data Science from Scratch - Joel Grus.jpg" alt="">
+  </div>
+</div>
+</body>
+</html>
