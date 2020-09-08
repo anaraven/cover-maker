@@ -26,6 +26,7 @@ body {
   box-sizing: border-box;
   float: left;
   border: grey 1px dashed;
+  background: {{page.back.background | default: "white" }};
 }
 
 .center {
@@ -67,6 +68,28 @@ img {
 {% endif %}
 }
 
+div#rules {
+  box-sizing: border-box;
+  padding-top: 1mm;
+  width: fit-content;
+}
+
+.face-rule {
+  box-sizing: border-box;
+  border-left: solid red thin;
+  border-right: solid red thin;
+  width: {{ page.width }};
+  height: 1cm;
+  float: left;
+}
+
+.center-rule {
+  width: {{ page.pages | divided_by: 444.0 | plus: 0.06 | divided_by: 2}}in;
+  float: left;
+  height: 1cm;
+  box-sizing: border-box;
+}
+
 @media print {
   .face, .center {
     border: none
@@ -98,6 +121,16 @@ img {
     <h1>{{title}}</h1>
     <h2>{{author}}</h2>
     {% endif %}
+  </div>
+</div>
+<div id="rules">
+  <div class="face-rule">
+    {{ page.width }}
+  </div>
+  <div class="center-rule" style="border-right: solid thin;">&nbsp;</div>
+  <div class="center-rule" style="border-left: solid thin;">&nbsp;</div>
+  <div class="face-rule">
+    {{ page.width }}
   </div>
 </div>
 </body>
