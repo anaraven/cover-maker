@@ -15,6 +15,7 @@ body {
 
 .all {
   clear: both;
+  float: left;
   width: fit-content;
   padding: 0;
   border: lightgrey solid thin;
@@ -58,7 +59,7 @@ img {
 }
 
 #front {
-  background: {{page.front.background | default: "white" }};  
+  background: {{ page.front.background | default: "white" }};  
 }
 
 #back {
@@ -71,12 +72,16 @@ img {
   color: {{ page.back.color | default: "black" }};
   padding: 1in;
 {% endif %}
-  background: {{page.back.background | default: "white" }};
+  background: {{ page.back.background | default: "white" }};
 }
 
 .rules {
+  border: white solid thin;
+  font-family: sans-serif;
+  font-weight: 100;
   box-sizing: border-box;
-  padding-top: 1mm;
+  margin-top: 1mm;
+  margin-bottom: 1mm;
   width: fit-content;
 }
 
@@ -96,10 +101,13 @@ img {
   height: 0.5cm;
   width: calc({{ thickness | divided_by: 2 }}in - 1px);
 }
+
 div#siderule {
     box-sizing: border-box;
     border-top: solid blue thin;
     border-bottom: solid blue thin;
+  font-family: sans-serif;
+  font-weight: 100;
     float: left;
     height: 100%;
     width: 5em;
@@ -121,6 +129,7 @@ div#siderule {
     {{ page.width }}
   </div>
 </div>
+<div>
 <div class="all" id="todo">
   <div class="face" id="back">
     {% if page.back.img %}
@@ -139,7 +148,9 @@ div#siderule {
     <h2>{{page.author}}</h2>
     {% endif %}
   </div>
+</div>
   <div id="siderule">{{page.height}}</div>
+  
 </div>
 <div class="rules">
   <div class="face-rule">
