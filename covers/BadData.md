@@ -2,8 +2,8 @@
 layout: book_cover
 title: "Bad Data Handbook"
 author: "Q. Ethan McCallum"
-height: "23.34cm"
 width: "17.78cm"
+height: "23.34cm"
 pages: 264
 font:
   size:  0.5in
@@ -11,7 +11,7 @@ font:
   weight: 400
 line_height: 1.26in
 color: white
-background:  "#E1243E"
+background:  "#E01E3D"
 front:
   img: "/images/covers/BadData/cover.png"
 back:
