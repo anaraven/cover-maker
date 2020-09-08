@@ -3,7 +3,7 @@ layout: book_cover
 title: "The Hitchhiker’s Guide to Python"
 author: Kenneth Reitz and Tanya Schlusser
 height: "23.34cm"
-width: "17.78"
+width: "17.78cm"
 pages: 322
 font:
   size:  0.4in
