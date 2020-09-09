@@ -16,4 +16,5 @@ front:
   img: "/images/covers/BadData/cover.png"
 back:
   img: /images/covers/BadData/back.jpg
+publisher: "O'Reilly"
 ---
