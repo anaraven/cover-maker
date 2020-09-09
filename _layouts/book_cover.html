@@ -3,42 +3,46 @@
 <head>
   <meta charset="utf-8">
   <!-- link rel="stylesheet" href="cover.css" -->
-{% if page.font.url %}
+{% if page.font.url -%}
 <link href="{{page.font.url}}" rel="stylesheet">
 {% else %}
 <link href="https://fonts.googleapis.com/css2?family={{page.font.family | replace: " ", "+" }}:wght@{{page.font.weight}}" rel="stylesheet">
-{% endif %}
+{% endif -%}
 <style>
 body {
   /* box-sizing: border-box; */
 }
 
 .all {
-  clear: both;
-  border: lightgrey solid thin;
-  width: fit-content;
-  height: {{ page.height }};
-  float: left;
+  /* clear: both; */
+  /* border: lightgrey solid thin; */
+  /* width: fit-content; */
   padding: 0;
+  /* float: left; */
+  height: {{ page.height }};
 }
 
 .face {
-  width: {{ page.width }};
   height: 100%;
   overflow: hidden;
   box-sizing: border-box;
-  float: left;
+  /* float: left; */
   /* border: grey 1px dashed; */
+  width: {{ page.width }};
 }
 
-{% assign thickness=page.pages | divided_by: 444.0 | plus: 0.06 %}
+table {
+  border-spacing: 0;
+}
+
+{% assign thickness=page.pages | divided_by: 444.0 | plus: 0.06 -%}
 .center {
-  display: table;
-  text-align: center;
-  vertical-align: middle;
-  writing-mode: vertical-rl;
-  float: left;
-  height: 100%;
+  /* display: table; */
+  /* text-align: center; */
+  /* vertical-align: middle; */
+  /* writing-mode: vertical-rl; */
+  /* float: left; */
+  /* height: 100%; */
   /* border-top: grey thin dashed; */
   {% if page.pages %}
   width: {{ thickness }}in;
@@ -53,18 +57,23 @@ body {
   background: {{ page.background | default: "#E21D3C" }};
 }
 
-img {
+.face img {
     /* border: blue solid thin; */
     max-width: 100%;
-    max-height: 100%;
+    height: {{page.height}};
 }
 
 #front {
+  box-sizing: border-box;
+  border: lightgrey solid thin;
+  border-left: none;
   background: {{ page.front.background | default: "white" }};  
 }
 
 #back {
-{% if page.back.img %}
+  border: lightgrey solid thin;
+  border-right: none;
+{%- if page.back.img %}
   padding: 0;
 {% else %}
   line-height: {{ page.back.line_height | default: "1.5em" }};
@@ -77,121 +86,127 @@ img {
 }
 
 .rules {
-  clear: both;
-  border: white solid thin;
-  width: fit-content;
+  /* border: white solid thin; */
   /* height: 2em; */
   font-family: sans-serif;
   font-weight: 100;
   margin-top: 1mm;
   margin-bottom: 1mm;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 .face-rule {
   box-sizing: border-box;
-  float: left;
   border-left: solid red thin;
   border-right: solid red thin;
-  /* height: 0.5cm; */
   text-align: center;
+  /* height: 0.5cm; */
   width: {{ page.width }};
 }
 
 .center-rule {
   box-sizing: border-box;
-  float: left;
   /* height: 0.5cm; */
   width: calc({{ thickness | divided_by: 2 }}in - 1px);
 }
 
-div#siderule {
-    box-sizing: border-box;
+#siderule {
+    display: block;
+    /* box-sizing: border-box; */
     border-top: solid blue thin;
     border-bottom: solid blue thin;
     font-family: sans-serif;
     writing-mode: vertical-rl;
     font-weight: 100;
-    float: left;
     text-align: center;
     width: 1em;
     margin-left: 2mm;
     height: {{page.height}};
 }
 
-div#title {
-    max-height: 74%;
-    display: table-cell;
+#title {
+    /* max-height: 74%; */
+    /* display: table-cell; */
+    display: block;
+    writing-mode: vertical-lr;
+    height: calc(23.34cm - 2.6in);
 }
-div#auth {
-  display: table-cell;
+#auth {
+  display: block;
   font-size: initial;
   font-family: serif;
-  line-height: initial;
-  height: 1.5in;
+  line-height: 1em;
+  height: 1.7in;
   text-align: right;
   padding-bottom: 3mm;
-  width: 100%;
+  /* margin-right: 0mm; */
+  writing-mode: vertical-rl;
+  width: 80%;
   vertical-align: middle;
   /* border: solid thin yellow; */
 }
-div#a {
+#foot {
   background: black;
-  display: table-cell;
+  display: block;
+  vertical-align: middle;
   font: initial;
   font-family: sans-serif;
-  height: 1in;
+  height: 0.8in;
+  writing-mode: vertical-rl;
+  text-align: center;
+  line-height: 3.4em;
+  width: 95%;
 }
 </style>
 
-<title>{{page.title | strip_html}}</title>
+<title>Cover {{page.title | strip_html}}</title>
 </head>
 <body>
-<div class="rules">
-  <div class="face-rule" style="margin-bottom: 1mm;">
+<table><tbody>
+<tr class="rules">
+  <td class="face-rule" style="margin-bottom: 1mm;">
     {{ page.width }}
-  </div>
-  <div class="center-rule" style="border-right: solid thin;">&nbsp;</div>
-  <div class="center-rule" style="border-left: solid thin;">&nbsp;</div>
-  <div class="face-rule" style="margin-bottom: 1mm;box-sizing: content-box;">
+  </td>
+  <td class="center-rule" style="border-right: solid thin;">&nbsp;</td>
+  <td class="center-rule" style="border-left: solid thin;">&nbsp;</td>
+  <td class="face-rule" style="margin-bottom: 1mm;box-sizing: content-box;">
     {{ page.width }}
-  </div>
-</div>
-<div>
-<div class="all" id="todo">
-  <div class="face" id="back">
-    {% if page.back.img %}
+  </td>
+</tr>
+<tr class="all" id="todo">
+  <td class="face" id="back">
+    {%- if page.back.img %}
     <img src="..{{page.back.img}}" alt="">
-    {% endif %}
-    {{content}}
-  </div>
-  <div class="center">
-    <div id="title">
-    {{page.title | default: "Title of the Book"}}
-    </div>
-    <div id="auth">{{ page.author }}</div>
-    <div id="a">{{ page.publisher }}</div>
-  </div>
-  <div class="face" id="front">
-    {% if page.front.img %}
+    {% endif -%}
+    {{content}}</td>
+  <td colspan=2 class="center"><table><tbody>
+    <tr><td id="title">{{page.title | default: "Title of the Book"}}</td></tr>
+    <tr><td id="auth">{{ page.author }}</td></tr>
+    <tr><td id="foot">{{ page.publisher }}</td></tr>
+  </tbody>
+  </table>
+  </td>
+  <td class="face" id="front">
+    {%- if page.front.img %}
     <img src="..{{page.front.img}}" alt="">
     {% else %}
     <h1>{{page.title}}</h1>
     <h2>{{page.author}}</h2>
-    {% endif %}
-  </div>
-</div>
-  <div id="siderule">{{page.height}}</div>
-</div>
-<div class="rules">
-  <div class="face-rule" style="margin-top: 1mm;">
+    {% endif -%}
+  </td>
+  <td id="siderule">{{page.height}}</td>
+</tr>
+<tr class="rules">
+  <td class="face-rule" style="margin-top: 1mm;">
     {{ page.width }}<br/>{{page.title}}
-  </div>
-  <div class="center-rule" style="border-right: solid thin; margin-top: 1mm;">&nbsp;</div>
-  <div class="center-rule" style="border-left: solid thin; margin-top: 1mm;">&nbsp;</div>
-  <div class="face-rule" style="margin-bottom: 1mm;box-sizing: content-box;">
+  </td>
+  <td class="center-rule" style="border-right: solid thin; margin-top: 1mm;">&nbsp;</td>
+  <td class="center-rule" style="border-left: solid thin; margin-top: 1mm;">&nbsp;</td>
+  <td class="face-rule" style="margin-bottom: 1mm;box-sizing: content-box;">
     {{ page.width }}<br/>{{page.pages}} pages
-  </div>
-</div>
+  </td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
