@@ -10,16 +10,16 @@
 {% endif %}
 <style>
 body {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 .all {
   clear: both;
-  float: left;
-  width: fit-content;
-  padding: 0;
   border: lightgrey solid thin;
+  width: fit-content;
   height: {{ page.height }};
+  float: left;
+  padding: 0;
 }
 
 .face {
@@ -33,6 +33,13 @@ body {
 
 {% assign thickness=page.pages | divided_by: 444.0 | plus: 0.06 %}
 .center {
+  display: table;
+  text-align: center;
+  vertical-align: middle;
+  writing-mode: vertical-rl;
+  float: left;
+  height: 100%;
+  /* border-top: grey thin dashed; */
   {% if page.pages %}
   width: {{ thickness }}in;
   line-height: {{ thickness }}in;
@@ -40,16 +47,10 @@ body {
   width: {{page.thickness}};
   line-height: {{page.line_height | default: "2cm"}};
   {% endif %}
-  height: 100%;
   font-size: {{ page.font.size | default: "15mm" }};
   font-family: "{{ page.font.family | default: "serif" }}";
   color: {{ page.color | default: "white" }};
   background: {{ page.background | default: "#E21D3C" }};
-  text-align: center;
-  vertical-align: middle;
-  writing-mode: vertical-rl;
-  float: left;
-  /* border-top: grey thin dashed; */
 }
 
 img {
@@ -76,13 +77,15 @@ img {
 }
 
 .rules {
+  clear: both;
   border: white solid thin;
+  width: fit-content;
+  /* height: 2em; */
   font-family: sans-serif;
   font-weight: 100;
-  box-sizing: border-box;
   margin-top: 1mm;
   margin-bottom: 1mm;
-  width: fit-content;
+  box-sizing: border-box;
 }
 
 .face-rule {
@@ -90,7 +93,7 @@ img {
   float: left;
   border-left: solid red thin;
   border-right: solid red thin;
-  height: 0.5cm;
+  /* height: 0.5cm; */
   text-align: center;
   width: {{ page.width }};
 }
@@ -98,7 +101,7 @@ img {
 .center-rule {
   box-sizing: border-box;
   float: left;
-  height: 0.5cm;
+  /* height: 0.5cm; */
   width: calc({{ thickness | divided_by: 2 }}in - 1px);
 }
 
@@ -106,13 +109,38 @@ div#siderule {
     box-sizing: border-box;
     border-top: solid blue thin;
     border-bottom: solid blue thin;
-  font-family: sans-serif;
-  font-weight: 100;
+    font-family: sans-serif;
+    writing-mode: vertical-rl;
+    font-weight: 100;
     float: left;
-    height: 100%;
-    width: 5em;
+    text-align: center;
+    width: 1em;
     margin-left: 2mm;
-    line-height: {{page.height}};
+    height: {{page.height}};
+}
+
+div#title {
+    max-height: 74%;
+    display: table-cell;
+}
+div#auth {
+  display: table-cell;
+  font-size: initial;
+  font-family: serif;
+  line-height: initial;
+  height: 1.5in;
+  text-align: right;
+  padding-bottom: 3mm;
+  width: 100%;
+  vertical-align: middle;
+  /* border: solid thin yellow; */
+}
+div#a {
+  background: black;
+  display: table-cell;
+  font: initial;
+  font-family: sans-serif;
+  height: 1in;
 }
 </style>
 
@@ -120,12 +148,12 @@ div#siderule {
 </head>
 <body>
 <div class="rules">
-  <div class="face-rule">
+  <div class="face-rule" style="margin-bottom: 1mm;">
     {{ page.width }}
   </div>
   <div class="center-rule" style="border-right: solid thin;">&nbsp;</div>
   <div class="center-rule" style="border-left: solid thin;">&nbsp;</div>
-  <div class="face-rule">
+  <div class="face-rule" style="margin-bottom: 1mm;box-sizing: content-box;">
     {{ page.width }}
   </div>
 </div>
@@ -137,8 +165,12 @@ div#siderule {
     {% endif %}
     {{content}}
   </div>
-  <div class="center" id="title">
+  <div class="center">
+    <div id="title">
     {{page.title | default: "Title of the Book"}}
+    </div>
+    <div id="auth">{{ page.author }}</div>
+    <div id="a">{{ page.publisher }}</div>
   </div>
   <div class="face" id="front">
     {% if page.front.img %}
@@ -150,15 +182,14 @@ div#siderule {
   </div>
 </div>
   <div id="siderule">{{page.height}}</div>
-  
 </div>
 <div class="rules">
-  <div class="face-rule">
+  <div class="face-rule" style="margin-top: 1mm;">
     {{ page.width }}<br/>{{page.title}}
   </div>
-  <div class="center-rule" style="border-right: solid thin;">&nbsp;</div>
-  <div class="center-rule" style="border-left: solid thin;">&nbsp;</div>
-  <div class="face-rule">
+  <div class="center-rule" style="border-right: solid thin; margin-top: 1mm;">&nbsp;</div>
+  <div class="center-rule" style="border-left: solid thin; margin-top: 1mm;">&nbsp;</div>
+  <div class="face-rule" style="margin-bottom: 1mm;box-sizing: content-box;">
     {{ page.width }}<br/>{{page.pages}} pages
   </div>
 </div>
