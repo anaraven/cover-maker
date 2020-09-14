@@ -18,27 +18,33 @@ front:
 back:
   img: /images/covers/StatNutshell/back.png
 head:
+  img: "../images/covers/StatNutshell/square.png"
   bg: black
-  height: 1.5cm
+  height: 1.25in
 top:
-  writing_mode: "vertical-rl"
-  height: "calc(23.34cm - 7.9cm)"
-  padding: 0.3cm 0
+  height: "calc(22.86cm - 6cm - 1.25in)"
+  padding: 5mm 0 0 0
   font:
     size:  0.4in
-bottom:
   writing_mode: "vertical-rl"
-  height: 6cm
+bottom:
+  height: 4cm
   padding: 0.3cm 0
   font:
     size:  0.2in
     family: sans-serif
     weight: 400
+  text_aling: right
+  writing_mode: "vertical-rl"
 foot:
   bg: black
-  height: 0.5cm
+  height: 2cm
   padding: 1mm 0
   font:
-      size: xx-small
+      size: 4.2mm;
+      family: "sans-serif"
+      variant: all-small-caps
+  writing_mode: vertical-rl
+  padding: 1mm 14.6mm
   text_align: center
 ---
