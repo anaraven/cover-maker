@@ -29,6 +29,7 @@ body {
 table {
   border-spacing: 0;
   border-collapse: collapse;
+  padding: 0;
 }
 
 {% assign thickness=page.pages | divided_by: 444.0 | plus: 0.06 -%}
@@ -117,6 +118,15 @@ table {
     display: block;  
 }
 
+td {
+    padding: 0;
+}
+
+#head img {
+  height: calc(1.25in - 2mm);
+  width: calc({{depth}} - 2mm);
+}
+
 #head {
   box-sizing: border-box;
   width: {{ page.head.width | default: depth }};
@@ -130,7 +140,7 @@ table {
   vertical-align: {{ page.head.vertical_align | default: "initial" }};
   text-align: {{ page.head.text_align | default: "initial" }};
   line-height: {{ page.head.line_height | default: "initial" }};
-  padding: {{ page.head.padding | default: "0" }};
+  padding: {{ page.head.padding | default: "1mm" }};
   margin: {{ page.head.margin | default: "0" }};
 }
 
@@ -180,6 +190,7 @@ table {
   writing-mode: {{ page.foot.writing_mode | default: "initial" }};
   font-size: {{ page.foot.font.size | default: "initial" }};
   font-family: "{{ page.foot.font.family | default: "serif" }}";
+  font-variant: {{ page.foot.font.variant | default: "initial" }};
   color: {{ page.foot.color | default: "white" }};  
   border: {{page.foot.border | default: "none" }};
   vertical-align: {{ page.foot.vertical_align | default: "initial" }};
@@ -195,13 +206,11 @@ table {
 <body>
 <table><tbody>
 <tr class="rules">
-  <td class="face-rule" style="margin-bottom: 1mm;">
-    {{ page.width }}
-  </td>
+  <td class="face-rule" style="margin-bottom: 1mm; text-align: right;">→</td>
   <td class="center-rule" style="border-right: solid thin;">&nbsp;</td>
   <td class="center-rule" style="border-left: solid thin;">&nbsp;</td>
-  <td class="face-rule" style="margin-bottom: 1mm;box-sizing: content-box;">
-    {{ page.width }}
+  <td class="face-rule" style="margin-bottom: 1mm; text-align: left; box-sizing: content-box;">
+← {{thickness | round: 2 }}in
   </td>
 </tr>
 <tr id="covers">
@@ -211,7 +220,11 @@ table {
     {% endif -%}
     {{content}}</td>
   <td colspan=2 class="center"><table><tbody>
-    {% if page.head %}<tr><td id="head">{{ page.head.text }}</td></tr>{% endif %}
+    {% if page.head %}<tr><td id="head">
+      {%- if page.head.img %}
+      <img src="{{ page.head.img }}">
+      {% endif -%}
+      {{ page.head.text }}</td></tr>{% endif %}
     {% if page.top %}<tr><td id="top">{{ page.top.text | default: page.title }}</td></tr>{% endif %}
     {% if page.bottom %}<tr><td id="bottom">{{ page.bottom.text | default: page.author }}</td></tr>{% endif %}
     {% if page.foot %}<tr><td id="foot">{{ page.foot.text | default: page.publisher }}</td></tr>{% endif %}
@@ -235,7 +248,7 @@ table {
     {{ page.width }}<br/>{{page.title}}
   </td>
   <td class="center-rule" style="border-right: solid thin; margin-top: 1mm;">&nbsp;</td>
-  <td class="center-rule" style="border-left: solid thin; margin-top: 1mm;">&nbsp;</td>
+  <td class="center-rule" style="border-left: solid thin;margin-top: 1mm;transform: translate(-4mm, 5mm); background: white;"></td>
   <td class="face-rule" style="margin-bottom: 1mm;box-sizing: content-box;">
     {{ page.width }}<br/>{{page.pages}} pages
   </td>
