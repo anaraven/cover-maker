@@ -1,44 +1,46 @@
 ---
 layout: book_cover
-title: "BioBuilder"
-author: "Kuldell, Bernstein, Ingram & Hart"
+title: "Graph Algorithms"
+author: "Mark Needham & Amy E. Hodler"
 publisher: "O'Reilly"
 width: "17.78cm"
 height: "23.34cm"
-pages: 237
+pages: 255
 font:
-  size:  0.4in
-  family: Bitter
+  size: 0.2in
+  family: Futura
   weight: 400
-line_height: 0.8in
-background:  "#006454"
+line_height: 0.56in
+color: "#000000"
+background:  "white"
 front:
-  img: "/images/covers/BioBuilder/cover.png"
+  img: "/images/covers/GraphAlgorithms/cover.png"
 back:
-  img: /images/covers/BioBuilder/back.png
+  img: /images/covers/GraphAlgorithms/Back.jpg
 head:
-  img: /images/covers/BioBuilder/square.png
-  bg: black
+  img: /images/OO.png
+  padding: 2mm
 top:
-  padding: 3mm 0
+  padding: 3mm 5mm
+  color: black
   font:
-    size:  0.4in
-    family: Bitter
+    size:  0.3in
+    family: Futura
     weight: 400
   writing_mode: "vertical-rl"
-  line_height: 0.61in
 bottom:
-  height: 5cm
-  padding: 3mm 2mm
+  height: 6cm
+  padding: 0.3cm 2mm
   text_align: right
+  color: black
   font:
     size:  0.2in
-    family: "Futura"
-    weight: 100
+    family: Futura
+    weight: 400
   writing_mode: "vertical-rl"
   line_height: 0.2in
 foot:
-  bg: black
+  color: red
   height: 2cm
   xpadding: 3mm 0
   font:

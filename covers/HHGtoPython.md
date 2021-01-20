@@ -19,9 +19,7 @@ back:
 head:
   img: /images/covers/HHGtoPython/square.png
   bg: black
-  height: 1.25in
 top:
-  height: "calc(23.34cm - 6cm - 1.25in)"
   padding: 5mm 0 0 0
   font:
     size:  0.35in
@@ -30,24 +28,25 @@ top:
   line_height: 0.75in
   writing_mode: "vertical-rl"
 bottom:
-  height: 4cm
-  padding: 3mm 5mm
+  height: 6cm
+  padding: 3mm 2mm
+  text_align: right
   font:
     size:  0.2in
     family: sans-serif
     weight: 400
-  text_align: right
-  line_height: 0.2in
   writing_mode: "vertical-rl"
+  line_height: 0.2in
 foot:
   bg: black
   height: 2cm
-  padding: 1mm 0
+  xpadding: 1mm 0
   font:
-      size: 4.2mm;
+      size: 5mm;
       family: "Futura"
       variant: all-small-caps
+      weight: bold
   writing_mode: vertical-rl
-  padding: 1mm 6.5mm
+  line_height: 0.72in
   text_align: center
 ---

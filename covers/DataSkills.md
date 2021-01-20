@@ -22,7 +22,6 @@ head:
   bg: black
   height: 1.25in
 top:
-  height: "calc(23.34cm - 6cm - 1.25in)"
   padding: 5mm 0 0 0
   font:
     size:  0.4in
