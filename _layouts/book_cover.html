@@ -123,14 +123,14 @@ td {
 }
 
 #head img {
-  height: calc(1.25in - 2mm);
-  width: calc({{depth}} - 2mm);
+  max-height: calc({{page.head.height | default: depth}} - 2 * {{page.head.padding | default: "1mm"}});
+  max-width: calc({{depth}} - 2 * {{page.head.padding | default: "1mm"}});
 }
 
 #head {
   box-sizing: border-box;
   width: {{ page.head.width | default: depth }};
-  height: {{ page.head.height | default: "auto" }};
+  height: {{ page.head.height | default: depth }};
   background: {{ page.head.bg | default: "initial" }};
   writing-mode: {{ page.head.writing_mode | default: "initial" }};
   font-size: {{ page.head.font.size | default: "initial" }};
@@ -146,9 +146,8 @@ td {
 
 #top {
   box-sizing: border-box;
-  /* height: calc(23.34cm - 2.6in); */
   width: {{ page.top.width | default: depth }};
-  height: {{ page.top.height | default: "auto" }};
+  height: {%if page.top.height %}{{page.top.height}}{%else%}calc({{page.height}} - {{page.head.height | default: depth}} - {{page.bottom.height}} - {{page.foot.height}}){%endif%};
   border: {{page.top.border | default: "none" }};
   background: {{ page.top.bg | default: "initial" }};
   writing-mode: {{ page.top.writing_mode | default: "initial" }};
@@ -158,7 +157,7 @@ td {
   border: {{page.top.border | default: "none" }};
   vertical-align: {{ page.top.vertical_align | default: "initial" }};
   text-align: {{ page.top.text_align | default: "initial" }};
-  line-height: {{ page.top.line_height | default: "inherit" }};
+  line-height: {%if page.top.line_height %}{{page.top.line_height}}{%else%}calc(({{depth}} - 2mm) / 2){%endif%};
   padding: {{ page.top.padding | default: "0" }};
   margin: {{ page.top.margin | default: "0" }};
 }
