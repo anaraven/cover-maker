@@ -7,9 +7,9 @@ width: "15.24cm"
 height: "22.86cm"
 pages: 594
 font:
-  size:  0.6in
   family: "EB Garamond"
   weight: 400
+  size:  0.6in
 line_height: 1in
 color: white
 background:  "#BB3023"
@@ -20,13 +20,14 @@ back:
 head:
   img: "../images/covers/StatNutshell/square.png"
   bg: black
-  height: 1.25in
+  height: 1.4in
 top:
-  height: "calc(22.86cm - 6cm - 1.25in)"
+  height: "calc(22.86cm - 6cm - 1.4in)"
   padding: 5mm 0 0 0
   font:
     size:  0.4in
   writing_mode: "vertical-rl"
+  line_height: 1.4in
 bottom:
   height: 4cm
   padding: 0.3cm 0
