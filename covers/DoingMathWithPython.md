@@ -1,0 +1,49 @@
+---
+layout: book_cover
+title: "DOING MATH WITH PYTHON"
+subtitle: "Use Programming to Explore algebra, Statistics, Calculus, and More!"
+author: "AMIT SAHA"
+publisher: '<img src="/images/noStarchPress.png">'
+width: "17.78cm"
+height: "23.5cm"
+pages: 265
+font:
+  family: "Poller One"
+  weight: 400
+background:  "#FFFACF"
+front:
+  img: "/images/covers/DoingMathWithPython/cover.jpg"
+back:
+  img: "/images/covers/DoingMathWithPython/back.jpg"
+head:
+  img: "/images/covers/DoingMathWithPython/square.jpg"
+  bg: "#BC2C35"
+  padding: 0mm
+top:
+  padding: 3mm 0
+  margin: 3mm 0mm
+  color: black
+  font:
+    size:  0.3in
+    family: "Poller One"
+    weight: 400
+    variant: all-small-caps
+  writing_mode: "vertical-rl"
+  line_height: 0.7in
+  offset: 7mm
+bottom:
+  height: 46mm
+  padding: 6mm 0mm
+  text_align: right
+  font:
+    size:  4mm
+    family: "Poller One"
+    weight: 100
+  writing_mode: "vertical-rl"
+  line_height: 0.7in
+  color: white
+  bg: black
+foot:
+  height: 18mm
+  bg: black
+---

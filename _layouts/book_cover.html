@@ -122,7 +122,7 @@ td {
     padding: 0;
 }
 
-#head img {
+#head img, #foot img {
   max-height: calc({{page.head.height | default: depth}} - 2 * {{page.head.padding | default: "1mm"}});
   max-width: calc({{depth}} - 2 * {{page.head.padding | default: "1mm"}});
 }
@@ -147,7 +147,7 @@ td {
 #top {
   box-sizing: border-box;
   width: {{ page.top.width | default: depth }};
-  height: {%if page.top.height %}{{page.top.height}}{%else%}calc({{page.height}} - {{page.head.height | default: depth}} - {{page.bottom.height}} - {{page.foot.height}}){%endif%};
+  height: {%if page.top.height %}{{page.top.height}}{%else%}calc({{page.height}} - {{page.head.height | default: depth}} - {{page.bottom.height}} - {{page.foot.height}} - {{page.top.offset | default: "0mm"}}){%endif%};
   border: {{page.top.border | default: "none" }};
   background: {{ page.top.bg | default: "initial" }};
   writing-mode: {{ page.top.writing_mode | default: "initial" }};
