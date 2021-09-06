@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <!-- link rel="stylesheet" href="cover.css" -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 {% if page.font.url -%}
 <link href="{{page.font.url}}" rel="stylesheet">
 {% else %}
@@ -36,7 +38,7 @@ table {
 {% assign depth = thickness | append: "in" -%}
 .center {
   padding: 0;
-  border-top: grey thin dashed;
+  /* border-top: grey thin dashed; */
   {% if page.pages %}
   width: {{ thickness }}in;
   line-height: {{ thickness }}in;
@@ -55,24 +57,25 @@ table {
 
 #front {
   box-sizing: border-box;
-  border: lightgrey solid thin;
-  border-left: none;
+  /* border: lightgrey solid thin; */
+  /* border-left: none; */
   background: {{ page.front.background | default: "white" }};  
 }
 
 #back {
-  border: lightgrey solid thin;
-  border-right: none;
-{%- if page.back.img %}
-  padding: 0;
-{% else %}
+  /* border: lightgrey solid thin; */
+  /* border-right: none; */
   line-height: {{ page.back.line_height | default: "1.5em" }};
-  font-family: "{{ page.back.family | default: "serif" }}";
-  font-size: {{ page.back.size | default: "12pt" }};
+  font-family: "{{ page.back.font.family | default: "serif" }}";
+  font-size: {{ page.back.font.size | default: "12pt" }};
   color: {{ page.back.color | default: "black" }};
-  padding: 1in;
-{% endif %}
   background: {{ page.back.background | default: "white" }};
+  padding-top: {{ page.back.padding_top | default: "0mm" }};
+  padding-bottom: {{ page.back.padding_bottom | default: "0mm" }};
+  padding-left: {{ page.back.padding_left | default: "0mm" }};
+  padding-right: {{ page.back.padding_right | default: "0mm" }};
+  width: calc({{ page.width }} - {{ page.back.padding_left | default: "0mm" }} - {{ page.back.padding_right | default: "0mm" }});
+  height: calc({{ page.height }} - {{ page.back.padding_bottom | default: "0mm" }});
 }
 
 .rules {
@@ -147,17 +150,16 @@ td {
 #top {
   box-sizing: border-box;
   width: {{ page.top.width | default: depth }};
-  height: {%if page.top.height %}{{page.top.height}}{%else%}calc({{page.height}} - {{page.head.height | default: depth}} - {{page.bottom.height}} - {{page.foot.height}} - {{page.top.offset | default: "0mm"}}){%endif%};
+  height: {%if page.top.height %}{{page.top.height}}{%else%}calc({{page.height}} - {{page.head.height | default: depth}} - {{page.bottom.height}} - {{page.foot.height | default: "0mm"}} - {{page.top.offset | default: "0mm"}}){%endif%};
   border: {{page.top.border | default: "none" }};
+  color: {{ page.top.color | default: "white" }};  
   background: {{ page.top.bg | default: "initial" }};
   writing-mode: {{ page.top.writing_mode | default: "initial" }};
   font-size: {{ page.top.font.size | default: "initial" }};
   font-family: "{{ page.top.font.family | default: "serif" }}";
-  color: {{ page.top.color | default: "white" }};  
-  border: {{page.top.border | default: "none" }};
   vertical-align: {{ page.top.vertical_align | default: "initial" }};
   text-align: {{ page.top.text_align | default: "initial" }};
-  line-height: {%if page.top.line_height %}{{page.top.line_height}}{%else%}calc(({{depth}} - 2mm) / 2){%endif%};
+  line-height: {%if page.top.line_height %}{{page.top.line_height}}{%else%}calc(({{depth}} - 8mm) / 2){%endif%};
   padding: {{ page.top.padding | default: "0" }};
   margin: {{ page.top.margin | default: "0" }};
 }
@@ -167,15 +169,14 @@ td {
   width: {{ page.bottom.width | default: depth }};
   height: {{ page.bottom.height | default: "auto" }};
   border: {{page.bottom.border | default: "none" }};
+  color: {{ page.bottom.color | default: "white" }};
   background: {{ page.bottom.bg | default: "initial" }};
   writing-mode: {{ page.bottom.writing_mode | default: "initial" }};
   font-size: {{ page.bottom.font.size | default: "initial" }};
   font-family: "{{ page.bottom.font.family | default: "serif" }}";
-  color: {{ page.bottom.color | default: "white" }};  
-  border: {{page.bottom.border | default: "none" }};
   vertical-align: {{ page.bottom.vertical_align | default: "initial" }};
   text-align: {{ page.bottom.text_align | default: "initial" }};
-  line-height: {{ page.bottom.line_height | default: "inherit" }};
+  line-height: {{ page.bottom.line_height | default: depth }};
   padding: {{ page.bottom.padding | default: "0" }};
   margin: {{ page.bottom.margin | default: "0" }};
 }
@@ -185,16 +186,15 @@ td {
   width: {{ page.foot.width | default: depth }};
   height: {{ page.foot.height | default: "auto" }};
   border: {{page.foot.border | default: "none" }};
+  color: {{ page.foot.color | default: "white" }};
   background: {{ page.foot.bg | default: "initial" }};
   writing-mode: {{ page.foot.writing_mode | default: "initial" }};
   font-size: {{ page.foot.font.size | default: "initial" }};
   font-family: "{{ page.foot.font.family | default: "serif" }}";
   font-variant: {{ page.foot.font.variant | default: "initial" }};
-  color: {{ page.foot.color | default: "white" }};  
-  border: {{page.foot.border | default: "none" }};
   vertical-align: {{ page.foot.vertical_align | default: "initial" }};
   text-align: {{ page.foot.text_align | default: "initial" }};
-  line-height: {{ page.foot.line_height | default: "initial" }};
+  line-height: {{ page.foot.line_height | default: depth }};
   padding: {{ page.foot.padding | default: "0" }};
   margin: {{ page.foot.margin | default: "0" }};
 }
