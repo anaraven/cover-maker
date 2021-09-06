@@ -1,41 +1,42 @@
 ---
 layout: book_cover
-title: "Bioinformatics Programming Using Python"
-author: "Mitchell L Model"
+title: "Google Compute Engine"
+author: "Cohen, Hurley & Newson"
 publisher: "O'Reilly"
 width: "17.78cm"
 height: "23.34cm"
-pages: 522
+pages: 244
 font:
-  family: EB Garamond
+  size:  0.4in
+  family: Bitter
   weight: 400
 line_height: 0.8in
-background:  "#b63b95"
+background:  "#A43F84"
 front:
-  img: "/images/covers/BioinfoUsingPython/cover.jpg"
+  img: "/images/covers/GoogleComputeEngine/cover.jpg"
 back:
-  img: /images/covers/BioinfoUsingPython/back.jpg
+  img: /images/covers/GoogleComputeEngine/back.jpg
 head:
-  img: /images/covers/BioinfoUsingPython/square.jpg
+  img: /images/covers/GoogleComputeEngine/square.jpg
   bg: black
 top:
-  padding: 3mm 4mm
+  padding: 3mm 5mm
+  background: "#CF253D"
   font:
-    size:  11mm
-    family: EB Garamond
+    size:  0.35in
+    family: Bitter
     weight: 400
   writing_mode: "vertical-rl"
-  xline_height: 0.6in
 bottom:
-  height: 5cm
-  padding: 3mm 0mm
+  height: 7cm
+  padding: 3mm 2mm
   text_align: right
   font:
-    size:  6mm
-    family: "EB Garamond"
+    size:  0.2in
+    family: "Futura"
     weight: 100
   writing_mode: "vertical-rl"
-  xline_height: 0.2in
+  line_height: 0.45in
 foot:
   bg: black
   height: 2cm
@@ -46,6 +47,6 @@ foot:
       variant: all-small-caps
       weight: bold
   writing_mode: vertical-rl
-  xline_height: 0.86in
+  line_height: 0.6in
   text_align: center
 ---
