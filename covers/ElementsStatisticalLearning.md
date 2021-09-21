@@ -4,7 +4,7 @@ title: "The Elements of Statistical Learning"
 author: "Hastie<br/> Tibshirani<br/> Friedman"
 height: "23.51cm"
 width: "15.5cm"
-pages: 440
+pages: 764
 font:
   family: Roboto
   weight: "100;400"
@@ -27,11 +27,11 @@ top:
     family: Futura
     weight: 400
   writing_mode: "vertical-rl"
-  line_height: 1in
+  line_height: 1.7in
   color: black
 bottom:
   height: 5cm
-  padding: 3mm 2mm
+  padding: 3mm 13mm
   text_align: right
   font:
     size:  0.2in
