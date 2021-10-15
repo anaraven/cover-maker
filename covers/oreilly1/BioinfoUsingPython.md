@@ -1,6 +1,7 @@
 ---
 layout: book_cover
 title: "Bioinformatics Programming Using Python"
+subtitle: Practical Programming for Biological Data
 author: "Mitchell L Model"
 publisher: "O'Reilly"
 width: "17.78cm"
@@ -9,25 +10,27 @@ pages: 522
 font:
   family: EB Garamond
   weight: 400
-line_height: 0.8in
 background:  "#b63b95"
+imagedir: "/images/covers/BioinfoUsingPython/"
 front:
-  img: "/images/covers/BioinfoUsingPython/cover.jpg"
+  img: cover.jpg
 back:
-  img: /images/covers/BioinfoUsingPython/back.jpg
+  img: back.jpg
 head:
-  img: /images/covers/BioinfoUsingPython/square.jpg
+  img: square.jpg
   bg: black
+  padding: 0mm
+  height: 1in
 top:
-  padding: 3mm 4mm
+  padding: 3mm 0mm
+  margin: 3mm 0mm
   font:
     size:  11mm
-    family: EB Garamond
+    family: "EB Garamond"
     weight: 400
   writing_mode: "vertical-rl"
-  xline_height: 0.6in
 bottom:
-  height: 5cm
+  height: 50.0mm
   padding: 3mm 0mm
   text_align: right
   font:
@@ -35,17 +38,14 @@ bottom:
     family: "EB Garamond"
     weight: 100
   writing_mode: "vertical-rl"
-  xline_height: 0.2in
 foot:
   bg: black
-  height: 2cm
-  xpadding: 3mm 0
+  height: 20mm
   font:
       size: 5mm;
       family: "Futura"
       variant: all-small-caps
       weight: bold
   writing_mode: vertical-rl
-  xline_height: 0.86in
   text_align: center
 ---

@@ -159,7 +159,7 @@ td {
   font-family: "{{ page.top.font.family | default: "serif" }}";
   vertical-align: {{ page.top.vertical_align | default: "initial" }};
   text-align: {{ page.top.text_align | default: "initial" }};
-  line-height: {%if page.top.line_height %}{{page.top.line_height}}{%else%}calc(({{depth}} - 8mm) / 2){%endif%};
+  line-height: {%if page.top.line_height %}{{page.top.line_height}}{%else%}calc(({{depth}}) / {{page.top.n_lines | default: 1}}){%endif%};
   padding: {{ page.top.padding | default: "0" }};
   margin: {{ page.top.margin | default: "0" }};
 }
@@ -176,7 +176,7 @@ td {
   font-family: "{{ page.bottom.font.family | default: "serif" }}";
   vertical-align: {{ page.bottom.vertical_align | default: "initial" }};
   text-align: {{ page.bottom.text_align | default: "initial" }};
-  line-height: {{ page.bottom.line_height | default: depth }};
+  line-height: {%if page.bottom.line_height %}{{page.bottom.line_height}}{%else%}calc(({{depth}}) / {{page.bottom.n_lines | default: 1}}){%endif%};
   padding: {{ page.bottom.padding | default: "0" }};
   margin: {{ page.bottom.margin | default: "0" }};
 }
@@ -215,13 +215,13 @@ td {
 <tr id="covers">
   <td class="face" id="back">
     {%- if page.back.img %}
-    <img src="..{{page.back.img}}" alt="">
+    <img src="{{page.imagedir}}{{page.back.img}}" alt="">
     {% endif -%}
     {{content}}</td>
   <td colspan=2 class="center"><table><tbody>
     {% if page.head %}<tr><td id="head">
       {%- if page.head.img %}
-      <img src="{{ page.head.img }}">
+      <img src="{{page.imagedir}}{{ page.head.img }}">
       {% endif -%}
       {{ page.head.text }}</td></tr>{% endif %}
     {% if page.top %}<tr><td id="top">{{ page.top.text | default: page.title }}</td></tr>{% endif %}
@@ -232,7 +232,7 @@ td {
   </td>
   <td class="face" id="front">
     {%- if page.front.img %}
-    <img src="..{{page.front.img}}" alt="">
+    <img src="{{page.imagedir}}{{page.front.img}}" alt="">
     {% else %}
     <div class="front-title">
         <h1>{{page.title}}</h1>

@@ -29,21 +29,21 @@ top:
     weight: 400
     variant: all-small-caps
   writing_mode: "vertical-rl"
-  line_height: 0.7in
-  offset: 7mm
+  line_height: 0.66in
+  offset: 7.5mm
 bottom:
-  height: 46mm
-  padding: 6mm 0mm
+  height: 50mm
+  padding: 3mm 0mm
   text_align: right
   font:
-    size:  4mm
+    size:  5mm
     family: "Poller One"
     weight: 100
   writing_mode: "vertical-rl"
-  line_height: 0.7in
+  line_height: 0.66in
   color: white
   bg: black
 foot:
-  height: 18mm
   bg: black
+  height: 18mm
 ---

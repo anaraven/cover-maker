@@ -8,22 +8,20 @@ width: "6in"
 height: "9in"
 pages: 174
 font:
-  size:  0.4in
   family: "Poller One"
   weight: 400
-line_height: 0.8in
 background:  "#FFFACF"
+imagedir: "/images/covers/StatisticsDoneWrong/"
 front:
-  img: "/images/covers/StatisticsDoneWrong/cover.jpg"
+  img: cover.jpg
 back:
-  img: /images/covers/StatisticsDoneWrong/back.jpg
+  img: back.jpg
 head:
-  img: /images/covers/StatisticsDoneWrong/square.jpg
+  img: square.jpg
   bg: "#BC2C35"
   padding: 0mm
 top:
   padding: 3mm 0
-  Xwidth: 0.7in
   margin: 3mm 0mm
   color: black
   font:
@@ -32,10 +30,9 @@ top:
     weight: 400
     variant: all-small-caps
   writing_mode: "vertical-rl"
-  line_height: 0.5in
   offset: 6.7mm
 bottom:
-  height: 49.0mm
+  height: 50.0mm
   padding: 3mm 0mm
   text_align: right
   font:
@@ -43,18 +40,9 @@ bottom:
     family: "Poller One"
     weight: 100
   writing_mode: "vertical-rl"
-  line_height: 0.5in
   color: white
   bg: black
 foot:
   bg: black
-  height: 1.2cm
-  xpadding: 3mm 0
-  font:
-      size: 5mm;
-      family: "Futura"
-      variant: all-small-caps
-      weight: bold
-  line_height: 0.2in
-  text_align: center
+  height: 12mm
 ---

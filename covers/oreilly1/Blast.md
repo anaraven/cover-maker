@@ -9,44 +9,42 @@ pages: 356
 font:
   family: Bitter
   weight: 400
-color: white
 background:  "#006454"
+imagedir: "/images/covers/Blast/"
 front:
-  img: "/images/covers/Blast/front.jpg"
+  img: front.jpg
 back:
-  img: /images/covers/Blast/back.png
+  img: back.png
 head:
-  img: /images/covers/BioBuilder/square.png
+  img: square.png
   bg: black
+  padding: 0mm
   height: 1in
 top:
-  height: "calc(23.34cm - 9cm - 1in - 2cm)"
-  padding: 0.3cm 0
+  padding: 3mm 0mm
+  margin: 3mm 0mm
   font:
     size:  0.4in
-    family: "Bona Nova"
+    family: "EB Garamond"
     weight: 400
   writing_mode: "vertical-rl"
-  line_height: 0.9in
 bottom:
-  height: 9cm
-  padding: 0.3cm 2mm
+  height: 90mm
+  padding: 3mm 0mm
   text_align: right
   font:
     size:  0.3in
-    family: sans-serif
-    weight: 400
+    family: "EB Garamond"
+    weight: 100
   writing_mode: "vertical-rl"
-  line_height: 0.65in
 foot:
   bg: black
-  height: 2cm
-  padding: 1mm 0
+  height: 20mm
   font:
-      size: 4.2mm;
+      size: 5mm;
       family: "Futura"
       variant: all-small-caps
+      weight: bold
   writing_mode: vertical-rl
-  padding: 1mm 7mm
   text_align: center
 ---
