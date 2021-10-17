@@ -1,58 +1,53 @@
 ---
 layout: book_cover
-title: "Generative Deep Learning"
-subtitle: "Teaching Machines to Paint, Write, Compose, and Play"
-author: "David Foster"
+title: "Mastering Python for Bioinformatics"
+subtitle: "How to Write Flexible, Documented, Tested Python Code for Research Computing"
+author: "Ken Youens-Clark"
 publisher: "O'Reilly"
 width: "17.78cm"
 height: "23.34cm"
-pages: 328
+pages: 669
 font:
-  size: 0.2in
   family: Futura
   weight: 400
-line_height: 0.56in
-color: "#000000"
 background:  "white"
+imagedir: /images/covers/MasteringPythonforBioinformatics/
 front:
-  img: "/images/covers/GenerativeDeepLearning/cover.png"
+  img: cover.jpg
 back:
-  img: /images/covers/GenerativeDeepLearning/back.png
+  img: back.jpg
 head:
-  img: /images/OO.png
+  img: ../../OO.png
   padding: 2mm
 top:
-  padding: 3mm 5mm
+  padding: 3mm 3mm
   color: black
   font:
-    size:  0.4in
+    size:  0.45in
     family: Futura
     weight: 400
   writing_mode: "vertical-rl"
-  xline_height: 0.13in
+  n_lines: 2.8
 bottom:
-  height: 6cm
-  padding: 0.3cm 2mm
+  height: 50mm
+  padding: 3mm 0mm
   text_align: right
   color: black
   font:
-    size:  0.2in
-    family: Futura
+    size:  5mm
+    family: "Futura"
     weight: 400
   writing_mode: "vertical-rl"
-  line_height: 0.6in
 foot:
   bg: white
   color: red
   height: 2cm
   padding: 1mm 0
   font:
-      size: 5mm;
-      family: "Futura"
-      variant: all-small-caps
-      weight: bold
+    size: 5mm;
+    family: "Futura"
+    variant: all-small-caps
+    weight: bold
   writing_mode: vertical-rl
-  line_height: 0.7in
-  padding: 1mm
   text_align: center
 ---
