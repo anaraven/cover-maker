@@ -35,6 +35,7 @@ table {
 }
 
 {% assign thickness=page.pages | divided_by: 444.0 | plus: 0.06 -%}
+{% assign thickness=page.pages | divided_by: 375.0 | plus: 0.06 -%}
 {% assign depth = thickness | append: "in" -%}
 .center {
   padding: 0;
