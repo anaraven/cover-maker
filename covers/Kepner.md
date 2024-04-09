@@ -17,6 +17,16 @@ back:
   color: white
   background: "black"
   size: 12pt
+  padding: 1cm 1cm
+top:
+  padding: 3mm 0mm
+  color: "black"
+  font:
+    size:  0.28in
+    family: Futura
+    weight: 400
+  writing_mode: "vertical-rl"
+  offset: 1mm
 ---
 
 Graphs are among the most important abstract data structures in computer science, and the algorithms that operate on them are critical to modern life. Graphs have been shown to be powerful tools for modeling complex problems because of their simplicity and generality. For this reason, the field of graph algorithms has become one of the pillars of theoretical computer science, informing research in such diverse areas as combinatorial optimization, complexity theory, and topology. Graph algorithms have been adapted and implemented by the military and commercial industry, as well as by researchers in academia, and have become essential in controlling the power grid, telephone systems, and, of course, computer networks.
